@@ -1,0 +1,269 @@
+# ============================================================================
+# TDDG Branches - structure used by the analyse + render stages
+# ----------------------------------------------------------------------------
+# Each branch maps incoming articles to the branch most likely to care about
+# them, and supplies the keyword vocabulary that the filter + analyse prompts
+# bias against.
+#
+# Keep keywords rich: include the expansive phrase ("synthetic training
+# environment") AND the acronym ("STE"). Mix US, UK, AU, and NATO terminology
+# where the concept exists in multiple traditions.
+#
+# Branch IDs are stable and used as JSON keys downstream. Renaming `name`
+# is fine; renaming `id` will break stored data.
+# ============================================================================
+
+branches:
+
+  - id: 1
+    name: Doctrine & Concepts
+    primary_categories: [doctrine]
+    focus_areas:
+      - Future training doctrine
+      - Concept development and capstone concepts
+      - Doctrinal alignment with new warfighting concepts (MDO, JADC2, LSCO)
+      - Force design and training implications
+      - Doctrine writing process and rapid update cycles
+    core_question: >
+      How should our training doctrine evolve to prepare formations for
+      multi-domain, large-scale combat operations against peer adversaries?
+    keywords:
+      - doctrine
+      - training doctrine
+      - doctrinal update
+      - capstone concept
+      - concept of operations
+      - concept paper
+      - warfighting concept
+      - multi-domain operations
+      - MDO
+      - large-scale combat operations
+      - LSCO
+      - joint all-domain command and control
+      - JADC2
+      - future force
+      - force design
+      - FM 7-0
+      - ADP 7-0
+      - JCIDS
+      - joint warfighting concept
+      - training transformation
+      - training and education concept
+      - doctrine 2.0
+      - rapid doctrine
+
+  - id: 2
+    name: Simulation & Synthetic Training
+    primary_categories: [simulation]
+    focus_areas:
+      - Synthetic Training Environment (STE) and follow-on programs
+      - Constructive and virtual simulation
+      - VR, AR, XR for training
+      - Serious games and game-based learning
+      - Digital twin and synthetic terrain
+      - Training device acquisition
+    core_question: >
+      What synthetic and simulated training technologies offer the greatest
+      readiness uplift in the next 3-10 years, and how do we mature them?
+    keywords:
+      - simulation
+      - simulator
+      - synthetic training environment
+      - STE
+      - synthetic training
+      - virtual reality
+      - VR
+      - augmented reality
+      - AR
+      - mixed reality
+      - extended reality
+      - XR
+      - immersive training
+      - serious games
+      - game-based learning
+      - GBL
+      - gaming for training
+      - digital twin
+      - synthetic terrain
+      - OneSAF
+      - JLCCTC
+      - CCTT
+      - AVCATT
+      - training device
+      - I/ITSEC
+      - MS&T
+      - virtual world
+      - generative AI in simulation
+      - AI-driven scenario
+
+  - id: 3
+    name: LVC Integration
+    primary_categories: [lvc]
+    focus_areas:
+      - Live, virtual, constructive integration architectures
+      - Distributed mission training and networked exercises
+      - Combat training centres and range modernisation
+      - Standards (HLA, DIS, TENA) and interoperability
+      - Persistent synthetic environments at scale
+    core_question: >
+      How do we knit live, virtual, and constructive training into a single
+      seamless training continuum that scales from squad to joint task force?
+    keywords:
+      - live virtual constructive
+      - LVC
+      - LVC integration
+      - distributed mission training
+      - DMT
+      - networked training
+      - joint training
+      - combat training centre
+      - combat training center
+      - CTC
+      - NTC
+      - JRTC
+      - JMRC
+      - integrated training environment
+      - ITE
+      - federated simulation
+      - high level architecture
+      - HLA
+      - distributed interactive simulation
+      - DIS
+      - TENA
+      - mission rehearsal
+      - exercise architecture
+      - common synthetic environment
+      - range modernisation
+      - range modernization
+      - training range
+      - instrumentation
+      - interoperability
+      - persistent synthetic environment
+      - synthetic wrap
+
+  - id: 4
+    name: Learning Science
+    primary_categories: [learning]
+    focus_areas:
+      - Adult learning theory applied to military training
+      - Cognitive science of skill acquisition and retention
+      - Instructional design and learning experience design
+      - Microlearning, mobile learning, blended models
+      - Competency- and mastery-based progression
+      - Transfer of training to performance
+    core_question: >
+      How do advances in learning science and adult education change how
+      soldiers and leaders should be trained, assessed, and re-trained?
+    keywords:
+      - adult learning
+      - andragogy
+      - pedagogy
+      - learning science
+      - learning engineering
+      - cognitive load
+      - deliberate practice
+      - spaced repetition
+      - retrieval practice
+      - microlearning
+      - mobile learning
+      - mLearning
+      - eLearning
+      - blended learning
+      - flipped classroom
+      - scenario-based learning
+      - problem-based learning
+      - competency-based training
+      - competency-based education
+      - CBT
+      - mastery learning
+      - learner-centric
+      - learning experience design
+      - LXD
+      - instructional design
+      - metacognition
+      - transfer of training
+      - retention
+      - skill decay
+
+  - id: 5
+    name: Leader Development
+    primary_categories: [leadership]
+    focus_areas:
+      - Officer and NCO professional development
+      - Professional military education (PME)
+      - Mission command and intent-based leadership
+      - Character, ethical reasoning, judgement under uncertainty
+      - Mentorship, coaching, broadening
+      - Talent management and career field design
+    core_question: >
+      What models of leader development best prepare officers and NCOs for
+      ambiguous, distributed operations against capable adversaries?
+    keywords:
+      - leader development
+      - leadership development
+      - professional military education
+      - PME
+      - officer education
+      - officer development
+      - NCO development
+      - junior leader development
+      - command climate
+      - mission command
+      - intent-based leadership
+      - decision-making
+      - judgement under uncertainty
+      - character development
+      - ethical reasoning
+      - mentorship
+      - coaching
+      - broadening assignment
+      - talent management
+      - career field design
+      - command and staff college
+      - war college
+      - fellowship
+      - self-development
+      - 360 feedback
+      - command selection
+
+  - id: 6
+    name: Training Analytics & Infrastructure
+    primary_categories: [analytics, infrastructure]
+    focus_areas:
+      - Training analytics and measurement of effectiveness
+      - xAPI, SCORM, learning record stores
+      - Training management and LMS infrastructure
+      - Range and facility infrastructure
+      - Readiness measurement and reporting
+      - Data-driven training feedback loops
+    core_question: >
+      What data and infrastructure do we need to measure training
+      effectiveness honestly and continuously improve the training enterprise?
+    keywords:
+      - training analytics
+      - learning analytics
+      - xAPI
+      - experience API
+      - SCORM
+      - learning record store
+      - LRS
+      - training management
+      - TMS
+      - learning management system
+      - LMS
+      - training data
+      - performance measurement
+      - training effectiveness
+      - after-action review
+      - AAR
+      - training infrastructure
+      - training range
+      - range modernisation
+      - readiness measurement
+      - objective training
+      - evidence-based training
+      - instructional data
+      - learning data
+      - data-driven training
+      - training feedback
+      - assessment design

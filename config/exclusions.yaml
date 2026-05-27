@@ -1,0 +1,64 @@
+# ============================================================================
+# Hard exclusions
+# ----------------------------------------------------------------------------
+# If an article's TITLE contains any of these phrases (case-insensitive,
+# substring match), the article is dropped immediately - it cannot be
+# rescued by score or tripwire.
+#
+# Use ONLY for content categories that are reliably irrelevant to training
+# futures. Be conservative: a phrase here permanently silences anything
+# matching it. Prefer multi-word phrases that pin a topic precisely.
+#
+# Categories targeted:
+#   - obituaries and memorials
+#   - retirement / change-of-command / ceremonial events
+#   - sports
+#   - recruiting commercials and quotas (not recruiting analytics or strategy)
+#   - one-off PR pieces (ribbon-cuttings, photo ops, parades)
+# ============================================================================
+
+exclusions:
+  # -- obituaries + memorials ----------
+  - obituary
+  - in memoriam
+  - dies at age
+  - dies at
+  - passes away
+  - laid to rest
+
+  # -- ceremonial events ----------
+  - change of command ceremony
+  - change-of-command ceremony
+  - retirement ceremony
+  - retirement of
+  - ribbon cutting
+  - ribbon-cutting
+  - groundbreaking ceremony
+  - memorial day ceremony
+  - veterans day ceremony
+  - flag-raising ceremony
+  - reenlistment ceremony
+
+  # -- sports ----------
+  - army-navy game
+  - army vs navy
+  - football season
+  - basketball game
+  - rugby tournament
+  - sports day
+  - intramural
+
+  # -- recruiting / PR ----------
+  - recruiting commercial
+  - recruiting ad
+  - new recruiting campaign
+  - go army campaign
+  - homecoming parade
+  - 5k run for
+  - holiday party
+
+  # -- pure-PR procurement (training-irrelevant) ----------
+  # Note: keep these very narrow; many procurement stories DO matter to
+  # training/simulation infrastructure. Add only items that are clearly
+  # weapons-platform-only with no training angle.
+  - missile contract awarded

@@ -1,0 +1,50 @@
+# ============================================================================
+# Always-include tripwires
+# ----------------------------------------------------------------------------
+# If an article's TITLE contains any of these phrases (case-insensitive,
+# substring match), the article passes the pre-filter regardless of its
+# branch keyword score. Used to make sure load-bearing topics never get
+# dropped by the coarse keyword screen.
+#
+# Keep this list tight - it's the safety net, not the main filter.
+# Aim for 15-25 phrases that are unambiguously on-topic.
+#
+# Multi-word phrases use literal substring matching; acronyms get
+# word-boundary matching automatically inside filter.py to avoid false
+# positives ("war" should not match a title containing "wargame").
+# ============================================================================
+
+tripwires:
+  # -- doctrine + concepts ----------
+  - doctrine
+  - mission command
+  - large-scale combat
+  - multi-domain operations
+  - MDO
+  - LSCO
+
+  # -- simulation + LVC ----------
+  - synthetic training
+  - synthetic training environment
+  - STE
+  - LVC
+  - live virtual constructive
+  - distributed mission
+  - I/ITSEC
+
+  # -- learning + leader development ----------
+  - learning science
+  - leader development
+  - professional military education
+  - PME
+  - human-machine teaming
+  - human machine teaming
+  - HMT
+
+  # -- analytics + assessment ----------
+  - after-action
+  - after action review
+  - AAR
+  - training analytics
+  - training effectiveness
+  - xAPI

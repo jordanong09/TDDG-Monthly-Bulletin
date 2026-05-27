@@ -1,0 +1,64 @@
+# ============================================================================
+# TDDG Bulletin - Runtime tunables
+# ----------------------------------------------------------------------------
+# Change values here, not in scripts. Every script reads this file at start.
+# ============================================================================
+
+# How many days of history to look back when fetching from each source.
+# 35 covers a full month plus a one-week buffer for late-published items.
+lookback_days: 35
+
+# Hard cap on items pulled from any single source per run, applied after
+# date filtering but before relevance scoring. Prevents a single noisy feed
+# from dominating the corpus.
+max_articles_per_source: 25
+
+# Relevance score (0.0-1.0) an article must clear to be retained for analysis.
+# Lower = broader net, more articles, more cost. Higher = stricter, may miss
+# borderline-relevant items. 0.55 is a starting point; tune after the first
+# two runs.
+relevance_threshold: 0.55
+
+# Cosine similarity above which two articles are treated as duplicates
+# (e.g. cross-posted commentary, same press release picked up by two outlets).
+# 0.85 is conservative; lower if obvious dupes are slipping through.
+dedupe_similarity_threshold: 0.85
+
+# ----------------------------------------------------------------------------
+# Claude model selection
+# ----------------------------------------------------------------------------
+# Current Anthropic model IDs (as of May 2026):
+#   claude-opus-4-6              - strongest reasoning, highest cost
+#   claude-sonnet-4-6            - balance of capability and cost
+#   claude-haiku-4-5-20251001    - cheapest, fastest
+#
+# You can use different models for different stages by setting them
+# individually below. If a stage value is blank, it falls back to claude_model.
+claude_model: claude-opus-4-6
+claude_model_filter:   claude-haiku-4-5-20251001   # cheap filter step
+claude_model_analyse:  claude-opus-4-6             # heavy synthesis step
+claude_model_render:   claude-opus-4-6             # final bulletin writing
+
+# Max output tokens per Claude call (raise for longer bulletins).
+max_output_tokens: 8000
+
+# ----------------------------------------------------------------------------
+# Bulletin output
+# ----------------------------------------------------------------------------
+# Bulletin file naming. Uses Python strftime tokens; YYYY-MM = year-month.
+bulletin_month_format: "%Y-%m"
+
+# Sort published bulletins newest-first on the website index.
+sort_bulletins_descending: true
+
+# ----------------------------------------------------------------------------
+# Fetching behaviour
+# ----------------------------------------------------------------------------
+# Seconds to wait between requests to the same host. Be polite.
+fetch_delay_seconds: 1.5
+
+# Per-request timeout (seconds).
+http_timeout_seconds: 30
+
+# Number of times to retry a failed fetch before giving up on a source.
+fetch_max_retries: 2

@@ -1,0 +1,371 @@
+# ============================================================================
+# TDDG Monthly Bulletin - Source Inventory
+# ----------------------------------------------------------------------------
+# Each entry MUST include:
+#   id          unique snake_case identifier
+#   name        human-readable source name
+#   url         feed URL (for type=rss) or landing page (for type=html)
+#   type        rss | html
+#   category    one or more of: doctrine, simulation, lvc, learning,
+#               leadership, analytics, infrastructure, general_military
+#   language    ISO 639-1, default en
+#   enabled     true | false
+#   notes       free text - why we monitor, known caveats, alt feeds
+#
+# Add new sources at the bottom. Keep IDs stable - downstream dedupe and
+# analytics keys off them. Verify URLs periodically; .feed/ paths drift.
+# Only open-source / publicly accessible material - no paywalls or auth.
+# ============================================================================
+
+sources:
+
+  # -- US Army TRADOC ecosystem -------------------------------------------------
+
+  - id: mad_scientist_lab
+    name: Mad Scientist Laboratory (TRADOC G-2)
+    url: https://madsciblog.tradoc.army.mil/feed/
+    type: rss
+    category: [doctrine, simulation, general_military]
+    language: en
+    enabled: true
+    notes: TRADOC's flagship futures blog. High signal on operational environment, character of war, emerging tech.
+
+  - id: army_university_press_review
+    name: Army University Press - Military Review
+    url: https://www.armyupress.army.mil/Journals/Military-Review/
+    type: html
+    category: [doctrine, leadership]
+    language: en
+    enabled: true
+    notes: Premier US Army professional journal. No public RSS - scrape new-article links from landing page.
+
+  - id: nco_journal
+    name: NCO Journal (Army University Press)
+    url: https://www.armyupress.army.mil/Journals/NCO-Journal/
+    type: html
+    category: [leadership, learning]
+    language: en
+    enabled: true
+    notes: NCO development and training perspectives. HTML scrape.
+
+  - id: call_publications
+    name: Center for Army Lessons Learned (CALL)
+    url: https://api.army.mil/e2/c/downloads/
+    type: html
+    category: [doctrine, learning, analytics]
+    language: en
+    enabled: true
+    notes: After-action and observation reports. Many PDFs - parse landing pages, not the PDFs themselves at fetch time.
+
+  # -- US Joint / DoD ----------------------------------------------------------
+
+  - id: joint_force_quarterly
+    name: Joint Force Quarterly (NDU Press)
+    url: https://ndupress.ndu.edu/JFQ/
+    type: html
+    category: [doctrine, leadership]
+    language: en
+    enabled: true
+    notes: Joint-level professional journal. Quarterly cadence - low frequency, high quality.
+
+  - id: marine_corps_gazette
+    name: Marine Corps Gazette
+    url: https://mca-marines.org/gazette/
+    type: html
+    category: [doctrine, leadership]
+    language: en
+    enabled: true
+    notes: USMC professional journal. Some content paywalled - filter for open articles only.
+
+  - id: usni_proceedings
+    name: USNI Proceedings (US Naval Institute)
+    url: https://www.usni.org/magazines/proceedings
+    type: html
+    category: [doctrine, leadership, general_military]
+    language: en
+    enabled: true
+    notes: Includes naval/marine training and education content. Some paywalled - take open content only.
+
+  - id: diu_news
+    name: Defense Innovation Unit (DIU) news
+    url: https://www.diu.mil/latest
+    type: html
+    category: [simulation, infrastructure]
+    language: en
+    enabled: true
+    notes: Procurement and prototyping signals for training tech.
+
+  - id: darpa_news
+    name: DARPA news
+    url: https://www.darpa.mil/news
+    type: html
+    category: [simulation, infrastructure, analytics]
+    language: en
+    enabled: true
+    notes: Forward research signals - cognitive science, AR/VR, autonomy with training implications.
+
+  # -- US think tanks ----------------------------------------------------------
+
+  - id: modern_war_institute
+    name: Modern War Institute at West Point
+    url: https://mwi.westpoint.edu/feed/
+    type: rss
+    category: [doctrine, leadership, general_military]
+    language: en
+    enabled: true
+    notes: Officer-led commentary on modern warfare. Strong on irregular warfare and tactical doctrine.
+
+  - id: war_on_the_rocks
+    name: War on the Rocks
+    url: https://warontherocks.com/feed/
+    type: rss
+    category: [doctrine, general_military]
+    language: en
+    enabled: true
+    notes: Mixed quality but consistently relevant. Filter aggressively at the relevance step.
+
+  - id: small_wars_journal
+    name: Small Wars Journal
+    url: https://smallwarsjournal.com/rss.xml
+    type: rss
+    category: [doctrine, general_military]
+    language: en
+    enabled: true
+    notes: Practitioner-oriented. Irregular cadence.
+
+  - id: rand_arroyo
+    name: RAND Arroyo Center publications
+    url: https://www.rand.org/ard/publications.html
+    type: html
+    category: [doctrine, analytics, general_military]
+    language: en
+    enabled: true
+    notes: Army-focused RAND research. Long reports - extract titles + abstracts at fetch.
+
+  - id: csis_defense
+    name: CSIS - International Security Program
+    url: https://www.csis.org/programs/international-security-program
+    type: html
+    category: [doctrine, general_military]
+    language: en
+    enabled: true
+    notes: Strategic-level analysis. Filter for training/force-development pieces.
+
+  - id: cnas
+    name: Center for a New American Security (CNAS)
+    url: https://www.cnas.org/rss
+    type: rss
+    category: [doctrine, general_military]
+    language: en
+    enabled: true
+    notes: Defense policy think tank with strong tech/training crossover.
+
+  - id: atlantic_council_scowcroft
+    name: Atlantic Council - Scowcroft Center
+    url: https://www.atlanticcouncil.org/programs/scowcroft-center-for-strategy-and-security/
+    type: html
+    category: [doctrine, general_military]
+    language: en
+    enabled: true
+    notes: Defense and security commentary. Selective relevance.
+
+  - id: hudson_defense
+    name: Hudson Institute - National Security
+    url: https://www.hudson.org/topics/national-security-defense
+    type: html
+    category: [doctrine, general_military]
+    language: en
+    enabled: true
+    notes: Conservative defense think tank. HTML landing page.
+
+  - id: ida
+    name: Institute for Defense Analyses (IDA)
+    url: https://www.ida.org/research-and-publications
+    type: html
+    category: [doctrine, analytics, general_military]
+    language: en
+    enabled: true
+    notes: FFRDC research. Many reports limited to abstracts publicly.
+
+  # -- UK -------------------------------------------------------------------
+
+  - id: wavell_room
+    name: Wavell Room (UK)
+    url: https://wavellroom.com/feed/
+    type: rss
+    category: [doctrine, leadership, general_military]
+    language: en
+    enabled: true
+    notes: British army-focused practitioner site. Excellent on PME and training reform debates.
+
+  - id: rusi
+    name: RUSI - Royal United Services Institute
+    url: https://www.rusi.org/rss/all-content
+    type: rss
+    category: [doctrine, general_military]
+    language: en
+    enabled: true
+    notes: UK defense and security think tank. Strong land warfare and lessons-learned commentary.
+
+  # -- Australia ------------------------------------------------------------
+
+  - id: the_cove
+    name: The Cove (Australian Army)
+    url: https://cove.army.gov.au/
+    type: html
+    category: [doctrine, learning, leadership]
+    language: en
+    enabled: true
+    notes: Australian Army professional development platform. Highly relevant to learning + PME.
+
+  - id: land_power_forum
+    name: Land Power Forum (Australian Army Research Centre)
+    url: https://researchcentre.army.gov.au/library/land-power-forum
+    type: html
+    category: [doctrine, general_military]
+    language: en
+    enabled: true
+    notes: Australian Army's doctrine and futures blog.
+
+  - id: aspi_strategist
+    name: ASPI - The Strategist
+    url: https://www.aspistrategist.org.au/feed/
+    type: rss
+    category: [doctrine, general_military]
+    language: en
+    enabled: true
+    notes: Australian Strategic Policy Institute commentary.
+
+  # -- NATO -----------------------------------------------------------------
+
+  - id: nato_review
+    name: NATO Review
+    url: https://www.nato.int/docu/review/index.htm
+    type: html
+    category: [doctrine, general_military]
+    language: en
+    enabled: true
+    notes: NATO's policy magazine.
+
+  - id: nato_act
+    name: NATO Allied Command Transformation
+    url: https://www.act.nato.int/articles/
+    type: html
+    category: [doctrine, lvc, simulation]
+    language: en
+    enabled: true
+    notes: NATO's transformation HQ - training, exercises, future force concepts.
+
+  - id: nato_sto
+    name: NATO Science & Technology Organization (STO)
+    url: https://www.sto.nato.int/Pages/news.aspx
+    type: html
+    category: [simulation, lvc, analytics]
+    language: en
+    enabled: true
+    notes: NATO research output across HFM and MSG panels. Highly relevant to LVC and human-performance work.
+
+  # -- Industry / trade press ------------------------------------------------
+
+  - id: breaking_defense
+    name: Breaking Defense
+    url: https://breakingdefense.com/feed/
+    type: rss
+    category: [simulation, lvc, infrastructure, general_military]
+    language: en
+    enabled: true
+    notes: Defense trade press. Filter for training/sim/range stories.
+
+  - id: defense_news_training_sim
+    name: Defense News - Training & Sim
+    url: https://www.defensenews.com/arc/outboundfeeds/rss/category/training-sim/
+    type: rss
+    category: [simulation, lvc, infrastructure]
+    language: en
+    enabled: true
+    notes: Defense News training-and-simulation vertical RSS.
+
+  - id: national_defense_magazine
+    name: National Defense Magazine (NDIA)
+    url: https://www.nationaldefensemagazine.org/rss
+    type: rss
+    category: [simulation, infrastructure, general_military]
+    language: en
+    enabled: true
+    notes: NDIA's industry magazine. Strong I/ITSEC coverage.
+
+  - id: afcea_signal
+    name: AFCEA SIGNAL Magazine
+    url: https://www.afcea.org/signal-media
+    type: html
+    category: [simulation, lvc, analytics, infrastructure]
+    language: en
+    enabled: true
+    notes: C4ISR and training-tech crossover.
+
+  - id: mst_magazine
+    name: MS&T - Military Simulation & Training (Halldale)
+    url: https://www.halldale.com/military-simulation-and-training
+    type: html
+    category: [simulation, lvc]
+    language: en
+    enabled: true
+    notes: The simulation industry's main trade magazine. HTML landing - look for new-article links.
+
+  - id: iitsec
+    name: I/ITSEC - Interservice/Industry Training, Simulation and Education Conference
+    url: https://www.iitsec.org/about/news-and-publications
+    type: html
+    category: [simulation, lvc]
+    language: en
+    enabled: true
+    notes: Annual conference; news page surfaces papers and award announcements throughout the year.
+
+  - id: ausa
+    name: Association of the United States Army (AUSA)
+    url: https://www.ausa.org/news
+    type: html
+    category: [doctrine, leadership, general_military]
+    language: en
+    enabled: true
+    notes: AUSA news, papers, and ILW (Institute of Land Warfare) publications.
+
+  # -- Learning / training industry (civil) ----------------------------------
+
+  - id: training_industry
+    name: Training Industry
+    url: https://trainingindustry.com/feed/
+    type: rss
+    category: [learning, leadership, analytics]
+    language: en
+    enabled: true
+    notes: Civil L&D industry. Useful for spotting adult-learning practice migrating into the force.
+
+  - id: elearning_industry
+    name: eLearning Industry
+    url: https://elearningindustry.com/rss
+    type: rss
+    category: [learning, analytics]
+    language: en
+    enabled: true
+    notes: Civil eLearning news. Filter aggressively - low signal-to-noise.
+
+  - id: chief_learning_officer
+    name: Chief Learning Officer Magazine
+    url: https://www.chieflearningofficer.com/feed/
+    type: rss
+    category: [learning, leadership, analytics]
+    language: en
+    enabled: true
+    notes: Enterprise L&D perspective. Strategy-of-learning content occasionally maps to PME debates.
+
+  # -- Disabled by default (examples for future activation) ------------------
+
+  - id: janes_open
+    name: Janes - open content
+    url: https://www.janes.com/defence-news
+    type: html
+    category: [general_military, infrastructure]
+    language: en
+    enabled: false
+    notes: Most Janes content is paywalled. Keep disabled until/unless an open-content endpoint is identified.

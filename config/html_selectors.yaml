@@ -1,0 +1,159 @@
+# ============================================================================
+# HTML selectors for non-RSS sources
+# ----------------------------------------------------------------------------
+# Each key is a source `id` from sources.yaml (only needed for type: html).
+# Each entry holds three CSS selectors:
+#
+#   article_link     selector for <a> elements pointing at article pages.
+#                    Must select the link itself - the script reads its href.
+#   title            (optional) selector relative to the link's PARENT for
+#                    a richer title element. Falls back to the link's own
+#                    text if blank.
+#   published_date   (optional) selector relative to the link's PARENT for
+#                    a date element. Script prefers a `datetime=...` attr
+#                    (HTML <time>) over the visible text.
+#
+# Leave any field null until you have inspected the page DOM yourself.
+# A source with no `article_link` selector is skipped with a warning.
+#
+# How to fill these in (one-time per source, ~5 min each):
+#   1. Open the source URL in a browser.
+#   2. Right-click an article link in the list -> Inspect.
+#   3. Find a selector that uniquely matches article links and nothing else
+#      (e.g. `h2.entry-title a`, `.views-row .field-content a`,
+#      `article header a`). Test in DevTools console:
+#         document.querySelectorAll("YOUR_SELECTOR").length
+#      Should match the number of articles on the page.
+#   4. Paste into article_link below. Repeat for title/date if needed.
+#   5. Re-run scripts/collect.py and check the per-source count in the log.
+#
+# Tip: many sites are WordPress (selectors like `.entry-title a`) or Drupal
+# (selectors like `.views-row a` or `.field--name-title a`). Try those first.
+# ============================================================================
+
+selectors:
+
+  # ----- US Army / DoD -------------------------------------------------------
+
+  army_university_press_review:
+    article_link: null    # TODO inspect https://www.armyupress.army.mil/Journals/Military-Review/
+    title: null
+    published_date: null
+
+  nco_journal:
+    article_link: null    # TODO inspect NCO Journal landing page
+    title: null
+    published_date: null
+
+  call_publications:
+    article_link: null    # TODO - CALL publications are mostly PDFs, may need different approach
+    title: null
+    published_date: null
+
+  joint_force_quarterly:
+    article_link: null    # TODO inspect https://ndupress.ndu.edu/JFQ/
+    title: null
+    published_date: null
+
+  marine_corps_gazette:
+    article_link: null    # TODO inspect https://mca-marines.org/gazette/
+    title: null
+    published_date: null
+
+  usni_proceedings:
+    article_link: null    # TODO inspect https://www.usni.org/magazines/proceedings
+    title: null
+    published_date: null
+
+  diu_news:
+    article_link: null    # TODO inspect https://www.diu.mil/latest
+    title: null
+    published_date: null
+
+  darpa_news:
+    article_link: null    # TODO inspect https://www.darpa.mil/news
+    title: null
+    published_date: null
+
+  # ----- US think tanks ------------------------------------------------------
+
+  rand_arroyo:
+    article_link: null    # TODO - RAND has a structured publications listing, often `.product-listing a`
+    title: null
+    published_date: null
+
+  csis_defense:
+    article_link: null    # TODO inspect https://www.csis.org/programs/international-security-program
+    title: null
+    published_date: null
+
+  atlantic_council_scowcroft:
+    article_link: null    # TODO
+    title: null
+    published_date: null
+
+  hudson_defense:
+    article_link: null    # TODO
+    title: null
+    published_date: null
+
+  ida:
+    article_link: null    # TODO
+    title: null
+    published_date: null
+
+  # ----- Australia / UK / NATO -----------------------------------------------
+
+  the_cove:
+    article_link: null    # TODO inspect https://cove.army.gov.au/ - likely Drupal patterns
+    title: null
+    published_date: null
+
+  land_power_forum:
+    article_link: null    # TODO
+    title: null
+    published_date: null
+
+  nato_review:
+    article_link: null    # TODO
+    title: null
+    published_date: null
+
+  nato_act:
+    article_link: null    # TODO
+    title: null
+    published_date: null
+
+  nato_sto:
+    article_link: null    # TODO - SharePoint-style site, selectors may be fragile
+    title: null
+    published_date: null
+
+  # ----- Industry / trade ---------------------------------------------------
+
+  afcea_signal:
+    article_link: null    # TODO inspect https://www.afcea.org/signal-media
+    title: null
+    published_date: null
+
+  mst_magazine:
+    article_link: null    # TODO inspect https://www.halldale.com/military-simulation-and-training
+    title: null
+    published_date: null
+
+  iitsec:
+    article_link: null    # TODO
+    title: null
+    published_date: null
+
+  ausa:
+    article_link: null    # TODO inspect https://www.ausa.org/news
+    title: null
+    published_date: null
+
+  # ----- Disabled (kept for reference) --------------------------------------
+
+  janes_open:
+    article_link: null    # TODO - most Janes content paywalled, may not be worth filling in
+    title: null
+    published_date: null
