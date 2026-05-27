@@ -76,18 +76,22 @@ def latest_raw_dir() -> Path | None:
 
 def compile_keyword(keyword: str) -> tuple[str, re.Pattern]:
     """
-    Compile a keyword to a regex.
+    Compile a phrase to a regex with word-boundary anchors at the edges.
 
-    Short, alphanumeric-only tokens (length <= 5) get word boundaries so
-    "AAR" doesn't match "war" and "STE" doesn't match "stem". Longer terms
-    or any term containing spaces, hyphens, or punctuation use substring
-    matching - they're already specific enough.
+    Word boundaries prevent false positives like:
+      - "AAR" matching inside "guARd"
+      - "PME" matching inside "develoPMEnt"
+      - "STE" matching inside "STEm"
+      - "dies at" matching inside "stuDIES AT the academy"
+
+    Internal characters (spaces, slashes, hyphens) are passed through via
+    re.escape, so multi-word phrases and tokens like "I/ITSEC" or
+    "human-machine teaming" match as written.
+
+    Used for branch keywords, tripwires, and exclusions alike.
     """
     k = keyword.lower().strip()
-    if len(k) <= 5 and re.fullmatch(r"[a-z0-9]+", k):
-        pattern = re.compile(rf"\b{re.escape(k)}\b", re.IGNORECASE)
-    else:
-        pattern = re.compile(re.escape(k), re.IGNORECASE)
+    pattern = re.compile(rf"\b{re.escape(k)}\b", re.IGNORECASE)
     return k, pattern
 
 
@@ -102,14 +106,15 @@ def score_against_branch(text: str, compiled_keywords: list[tuple[str, re.Patter
     return score, sorted(hits)
 
 
-def first_phrase_match(text: str, phrases: list[str]) -> str | None:
-    """Return the first phrase from `phrases` that appears in `text` (case-insensitive substring)."""
-    lowered = text.lower()
-    for phrase in phrases:
-        if not phrase:
-            continue
-        if phrase.lower() in lowered:
-            return phrase
+def first_phrase_match(text: str, compiled_phrases: list[tuple[str, re.Pattern]]) -> str | None:
+    """
+    Return the label of the first compiled phrase whose pattern matches `text`.
+    Phrases are compiled via compile_keyword so matching uses word boundaries -
+    consistent with branch keyword scoring.
+    """
+    for label, pattern in compiled_phrases:
+        if pattern.search(text):
+            return label
     return None
 
 
@@ -178,6 +183,12 @@ def main() -> int:
         compiled[bid] = [compile_keyword(k) for k in b.get("keywords", [])]
         primary_cats[bid] = set(b.get("primary_categories", []) or [])
 
+    # Pre-compile tripwires and exclusions with the same word-boundary logic
+    # used for branch keywords. This is what stops "PME" from matching inside
+    # "development" and "dies at" from matching inside "studies at".
+    compiled_tripwires = [compile_keyword(t) for t in tripwires if t]
+    compiled_exclusions = [compile_keyword(e) for e in exclusions if e]
+
     # Decision counters
     kept: list[dict] = []
     drop_excl = 0
@@ -200,7 +211,7 @@ def main() -> int:
         title_lower = title.lower()
 
         # 1. Hard exclusions on title (highest priority - can't be rescued).
-        excl_hit = first_phrase_match(title, exclusions)
+        excl_hit = first_phrase_match(title, compiled_exclusions)
         if excl_hit:
             drop_excl += 1
             reason = f"excluded by '{excl_hit}'"
@@ -227,7 +238,7 @@ def main() -> int:
                 max_bid = bid
 
         # 3. Always-include tripwires (checked AFTER scoring so we record scores).
-        tripwire_hit = first_phrase_match(title, tripwires)
+        tripwire_hit = first_phrase_match(title, compiled_tripwires)
 
         decision_record = {
             **art,

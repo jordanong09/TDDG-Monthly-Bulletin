@@ -24,8 +24,9 @@ tripwires:
   - LSCO
 
   # -- simulation + LVC ----------
+  # Note: "synthetic training environment" is covered by "synthetic training"
+  # (word-boundary match) - no need to list both.
   - synthetic training
-  - synthetic training environment
   - STE
   - LVC
   - live virtual constructive

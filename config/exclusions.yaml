@@ -19,9 +19,10 @@
 
 exclusions:
   # -- obituaries + memorials ----------
+  # Note: "dies at" already matches "dies at 87", "dies at age 92", etc.
+  # via word-boundary matching - the longer phrase would be unreachable.
   - obituary
   - in memoriam
-  - dies at age
   - dies at
   - passes away
   - laid to rest
