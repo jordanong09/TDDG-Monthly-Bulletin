@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archive — TDDG Training Futures Bulletin</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="classification">UNCLASSIFIED // FOR OFFICIAL USE</div>
+
+<main>
+
+  <header class="site-mast">
+    <div class="eyebrow">HQ TRADOC · Training Doctrine Development Group</div>
+    <h1>Bulletin Archive</h1>
+    <nav>
+      <a href="../index.html">← Landing</a>
+    </nav>
+  </header>
+
+  {% if by_year %}
+    {% for year in years_desc %}
+    <section class="archive-year">
+      <h3>{{ year }}</h3>
+      <ul class="archive-year-list">
+        {% for r in by_year[year] %}
+        <li>
+          <a href="{{ r.month }}/index.html">
+            <span class="month-label">{{ r.month }}</span>
+            <span class="headline">{{ r.headline }}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endfor %}
+  {% else %}
+    <section>
+      <p class="empty">No bulletins published yet.</p>
+    </section>
+  {% endif %}
+
+  <footer class="site-foot">
+    {{ total_count }} bulletin{{ '' if total_count == 1 else 's' }} archived ·
+    Site generated {{ generated_at }}.
+  </footer>
+
+</main>
+
+<div class="classification">UNCLASSIFIED // FOR OFFICIAL USE</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "issues": [
+    {
+      "severity": "low",
+      "category": "stylistic",
+      "section": "bluf.summary",
+      "where": "slower-burn",
+      "explanation": "Mild colloquialism in an otherwise staff-officer register.",
+      "suggested_fix": "Replace 'slower-burn' with 'less time-sensitive'."
+    }
+  ],
+  "summary": {
+    "issue_count_by_severity": {
+      "low": 1,
+      "medium": 0,
+      "high": 0
+    },
+    "issue_count_by_category": {
+      "hype": 0,
+      "marketing": 0,
+      "unsupported": 0,
+      "misassignment": 0,
+      "filler": 0,
+      "stylistic": 1,
+      "structural": 0
+    }
+  },
+  "ready_for_review": true
+}

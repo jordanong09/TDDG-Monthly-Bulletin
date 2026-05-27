@@ -1,0 +1,257 @@
+/* ============================================================
+   TDDG Training Futures Bulletin - shared stylesheet
+   Used by:  website/index.html  (landing)
+             website/archive/index.html  (full archive list)
+   The per-month bulletin pages have inline CSS so they remain
+   self-contained when downloaded or printed.
+   ============================================================ */
+
+:root {
+  --c-ink: #0f1115;
+  --c-body: #1c1f24;
+  --c-muted: #525860;
+  --c-line: #c8ccd2;
+  --c-line-soft: #e5e7eb;
+  --c-accent: #4a4f57;
+  --c-bg: #fbfaf6;
+  --c-card: #ffffff;
+  --c-warning: #b22234;
+  --c-pill-bg: #efece6;
+
+  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+          Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--c-bg);
+  color: var(--c-body);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4, h5, .sans {
+  font-family: var(--sans);
+  color: var(--c-ink);
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+
+a {
+  color: var(--c-ink);
+  text-underline-offset: 2px;
+}
+a:hover { color: var(--c-warning); }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  color: var(--c-accent);
+}
+
+/* ---- top + bottom classification bars ---------------------- */
+.classification {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  background: #0f1115;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* ---- shared page container --------------------------------- */
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 24px 80px;
+}
+
+/* ---- site masthead (landing + archive) --------------------- */
+.site-mast {
+  border-bottom: 2px solid var(--c-ink);
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+}
+.site-mast .eyebrow {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--c-muted);
+}
+.site-mast h1 {
+  font-size: 28px;
+  margin: 8px 0 4px;
+  font-weight: 700;
+}
+.site-mast nav {
+  font-family: var(--sans);
+  font-size: 14px;
+  margin-top: 6px;
+}
+.site-mast nav a { margin-right: 14px; }
+
+/* ---- current bulletin teaser (landing) --------------------- */
+.teaser {
+  background: var(--c-card);
+  border: 1px solid var(--c-line-soft);
+  border-left: 4px solid var(--c-ink);
+  padding: 18px 22px;
+  margin-bottom: 28px;
+}
+.teaser .month {
+  font-family: var(--sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-muted);
+  margin: 0;
+}
+.teaser .headline {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 6px 0 10px;
+  line-height: 1.3;
+}
+.teaser .summary { margin: 0 0 14px; }
+.teaser .cta {
+  font-family: var(--sans);
+  font-size: 14px;
+}
+.teaser .cta a {
+  display: inline-block;
+  border-bottom: 1px solid var(--c-ink);
+  text-decoration: none;
+  padding-bottom: 1px;
+}
+
+/* ---- branch tag cloud (landing teaser) --------------------- */
+.branch-tags {
+  margin: 12px 0 14px;
+}
+.branch-tags .tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 12px;
+  background: var(--c-pill-bg);
+  border: 1px solid var(--c-line-soft);
+  border-radius: 14px;
+  padding: 3px 10px;
+  margin: 0 4px 4px 0;
+  color: var(--c-accent);
+  white-space: nowrap;
+}
+.branch-tags .tag[data-intensity="medium"] { color: var(--c-ink); }
+.branch-tags .tag[data-intensity="high"]   {
+  color: #fff;
+  background: var(--c-warning);
+  border-color: var(--c-warning);
+}
+.branch-tags .tag .count {
+  font-family: var(--mono);
+  font-size: 11px;
+  margin-left: 4px;
+  opacity: 0.75;
+}
+
+/* ---- section blocks --------------------------------------- */
+section { margin: 36px 0; }
+section > h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--c-line);
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+/* ---- recent / archive list -------------------------------- */
+.recent-list, .archive-year-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.recent-list li, .archive-year-list li {
+  border-bottom: 1px solid var(--c-line-soft);
+  padding: 12px 0;
+}
+.recent-list li:last-child, .archive-year-list li:last-child {
+  border-bottom: none;
+}
+.recent-list .month-label, .archive-year-list .month-label {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--c-muted);
+  width: 76px;
+}
+.recent-list .headline, .archive-year-list .headline {
+  font-family: var(--serif);
+  font-size: 16px;
+}
+.recent-list a, .archive-year-list a { text-decoration: none; }
+.recent-list a:hover .headline, .archive-year-list a:hover .headline {
+  text-decoration: underline;
+}
+
+/* ---- archive year groupings ------------------------------- */
+.archive-year {
+  margin: 28px 0;
+}
+.archive-year h3 {
+  font-size: 22px;
+  margin: 0 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--c-line-soft);
+}
+
+/* ---- site footer ------------------------------------------ */
+.site-foot {
+  margin-top: 64px;
+  padding-top: 16px;
+  border-top: 1px solid var(--c-line-soft);
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--c-muted);
+}
+
+/* ---- empty state ------------------------------------------ */
+.empty {
+  font-style: italic;
+  color: var(--c-muted);
+  padding: 16px 0;
+}
+
+/* ---- responsive ------------------------------------------- */
+@media (max-width: 520px) {
+  html, body { font-size: 16px; }
+  main { padding: 18px 16px 60px; }
+  .site-mast h1 { font-size: 22px; }
+  .teaser .headline { font-size: 18px; }
+  .recent-list .month-label, .archive-year-list .month-label {
+    display: block;
+    width: auto;
+    margin-bottom: 2px;
+  }
+}
+
+/* ---- print ------------------------------------------------ */
+@media print {
+  :root { --c-bg: #fff; --c-card: #fff; }
+  body { font-size: 11pt; line-height: 1.4; }
+  .classification { background: #000 !important; color: #fff !important; }
+  a { color: var(--c-ink); text-decoration: none; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; }
+  .site-foot { border-top-color: #000; }
+}

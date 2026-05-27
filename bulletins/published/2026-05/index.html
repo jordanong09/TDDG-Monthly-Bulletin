@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TDDG Training Futures Bulletin — 2026-05</title>
+<style>
+/* ---- typography ----------------------------------------------------- */
+:root {
+  --c-ink: #0f1115;
+  --c-body: #1c1f24;
+  --c-muted: #525860;
+  --c-line: #c8ccd2;
+  --c-line-soft: #e5e7eb;
+  --c-accent: #4a4f57;
+  --c-bg: #fbfaf6;
+  --c-card: #ffffff;
+  --c-watermark: rgba(178, 34, 52, 0.07);
+  --c-warning: #b22234;
+  --c-warning-bg: #fff5f6;
+  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--c-bg);
+  color: var(--c-body);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4, h5, .sans {
+  font-family: var(--sans);
+  color: var(--c-ink);
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+
+a { color: var(--c-ink); text-underline-offset: 2px; }
+a:hover { color: var(--c-warning); }
+
+/* ---- classification header / footer (draft) ------------------------- */
+.classification {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  background: var(--c-warning);
+  color: #fff;
+  text-transform: uppercase;
+}
+.classification.bottom { border-top: 0; }
+
+/* ---- watermark (draft only) ----------------------------------------- */
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 24px 80px;
+}
+
+/* ---- masthead -------------------------------------------------------- */
+.masthead {
+  border-bottom: 2px solid var(--c-ink);
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+}
+.masthead h1 {
+  font-size: 28px;
+  margin: 8px 0 4px;
+  font-weight: 700;
+}
+.masthead .meta {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--c-muted);
+}
+
+/* ---- section blocks -------------------------------------------------- */
+section { margin: 36px 0; }
+section > h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--c-line);
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+/* ---- BLUF ------------------------------------------------------------ */
+.bluf {
+  background: var(--c-card);
+  border: 1px solid var(--c-line-soft);
+  border-left: 4px solid var(--c-ink);
+  padding: 18px 22px;
+  margin-bottom: 36px;
+}
+.bluf .headline {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  line-height: 1.3;
+  color: var(--c-ink);
+}
+.bluf .summary { margin: 0; }
+
+/* ---- branch relevance dashboard ------------------------------------- */
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.dashboard .row {
+  display: grid;
+  grid-template-columns: 28px 1fr 70px;
+  gap: 10px;
+  align-items: baseline;
+  padding: 8px 10px;
+  background: var(--c-card);
+  border: 1px solid var(--c-line-soft);
+}
+.dashboard .row .id {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--c-muted);
+}
+.dashboard .row .body { font-size: 15px; }
+.dashboard .row .body .name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 14px;
+  margin-right: 6px;
+}
+.dashboard .row .intensity {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: right;
+  color: var(--c-muted);
+}
+.dashboard .row .intensity[data-level="high"]   { color: var(--c-warning); font-weight: 700; }
+.dashboard .row .intensity[data-level="medium"] { color: var(--c-ink); font-weight: 700; }
+
+/* ---- key developments ----------------------------------------------- */
+.key-dev {
+  border-top: 1px solid var(--c-line-soft);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+.key-dev:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+.key-dev h3 {
+  font-size: 17px;
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+.key-dev .what  { margin: 4px 0; }
+.key-dev .sowhat {
+  margin: 6px 0 0;
+  font-style: italic;
+  color: var(--c-body);
+}
+.key-dev .sowhat::before {
+  content: "So what — ";
+  font-style: normal;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--c-warning);
+  margin-right: 4px;
+}
+.tags {
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--c-muted);
+}
+.tag-branch {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 1px 6px;
+  border: 1px solid var(--c-line);
+  margin-right: 4px;
+  color: var(--c-accent);
+}
+
+/* ---- per-branch sections -------------------------------------------- */
+.branch-section { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--c-line-soft); }
+.branch-section:first-child { border-top: none; padding-top: 0; }
+.branch-section h3 {
+  font-size: 18px;
+  margin: 0 0 4px;
+}
+.branch-section h3 .num {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--c-muted);
+  font-weight: 400;
+  margin-right: 6px;
+}
+.branch-section .summary { margin: 8px 0 12px; }
+.branch-section ul.items { margin: 0; padding-left: 1.1em; }
+.branch-section ul.items li { margin-bottom: 8px; }
+.branch-section ul.items .item-title { font-family: var(--sans); font-weight: 700; }
+.branch-section ul.items .item-impl { display: block; margin-top: 2px; }
+
+/* ---- cross-cutting themes ------------------------------------------- */
+.theme {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--c-line-soft);
+}
+.theme:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+.theme h3 { font-size: 16px; margin: 0 0 6px; }
+
+/* ---- watch areas ----------------------------------------------------- */
+.watch {
+  background: var(--c-card);
+  border: 1px solid var(--c-line-soft);
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+.watch .signal {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0;
+}
+.watch .why { margin: 6px 0; }
+.watch ul.indicators {
+  font-family: var(--sans);
+  font-size: 13px;
+  margin: 6px 0 0;
+  padding-left: 1.1em;
+  color: var(--c-accent);
+}
+
+/* ---- source references ---------------------------------------------- */
+.sources { font-size: 14px; }
+.sources ol { padding-left: 2em; }
+.sources li { margin-bottom: 6px; }
+.sources .src-meta {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--c-muted);
+  margin-left: 4px;
+}
+
+/* ---- issues panel (sanity check, draft only) ------------------------ */
+.issues {
+  background: var(--c-warning-bg);
+  border-left: 4px solid var(--c-warning);
+  padding: 14px 18px;
+  margin: 28px 0;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.issues h2 {
+  margin-top: 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-warning);
+}
+.issues table { border-collapse: collapse; width: 100%; margin-top: 6px; }
+.issues th, .issues td {
+  text-align: left;
+  vertical-align: top;
+  padding: 4px 8px;
+  border-bottom: 1px solid #f0d6d8;
+  font-size: 12.5px;
+}
+.issues th { font-weight: 700; }
+.issues .sev-high { color: var(--c-warning); font-weight: 700; }
+.issues .empty { font-style: italic; color: var(--c-muted); }
+
+/* ---- responsive ----------------------------------------------------- */
+@media (max-width: 520px) {
+  html, body { font-size: 16px; }
+  main { padding: 18px 16px 60px; }
+  .masthead h1 { font-size: 22px; }
+  body::before { font-size: 26vw; }
+}
+
+/* ---- print ---------------------------------------------------------- */
+@media print {
+  :root { --c-bg: #fff; --c-card: #fff; }
+  body { font-size: 11pt; line-height: 1.4; }
+  body::before { color: rgba(178,34,52,0.06); font-size: 100pt; }
+  .classification { background: #000; color: #fff; }
+  .issues { background: #fff; border-color: #000; }
+  a { color: var(--c-ink); text-decoration: none; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; }
+  section { page-break-inside: avoid; }
+  .branch-section, .key-dev, .theme, .watch { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="classification top" style="background:#0f1115">UNCLASSIFIED // FOR OFFICIAL USE</div>
+
+<main>
+
+  <header class="masthead">
+    <div class="meta">HQ TRADOC · Training Doctrine Development Group</div>
+    <h1>Training Futures Bulletin — 2026-05</h1>
+    <div class="meta">
+Published 2026-05-27 04:33 UTC    </div>
+  </header>
+
+  <section>
+    <h2>Bottom Line Up Front</h2>
+    <div class="bluf">
+      <p class="headline">STE crew-station timing data and brigade-level xAPI adoption are the month&#39;s two actionable signals.</p>
+      <p class="summary">Two developments warrant near-term branch action. First, a vendor STE trial reports a 12-to-7-hour reduction in a crew-station block - the figure should be independently validated before TDDG cites it. Second, brigade-level xAPI adoption has reached a threshold that makes a federated training analytics pilot feasible. The other four items in this month&#39;s corpus are coherent but slower-burn: FM 7-0 revision, distributed mission training at JMRC, an IET microlearning pilot, and PME pathway redesign at Carlisle. No items require crisis attention.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Branch Relevance Dashboard</h2>
+    <div class="dashboard">
+      <div class="row">
+        <div class="id">B1</div>
+        <div class="body">
+          <span class="name">Doctrine &amp; Concepts</span>
+          <span class="oneline">FM 7-0 revision reflects LSCO and MDO concept shift.</span>
+        </div>
+        <div class="intensity" data-level="low">
+          low (1)
+        </div>
+      </div>
+      <div class="row">
+        <div class="id">B2</div>
+        <div class="body">
+          <span class="name">Simulation &amp; Synthetic Training</span>
+          <span class="oneline">Vendor STE timing data; awaiting independent replication.</span>
+        </div>
+        <div class="intensity" data-level="low">
+          low (2)
+        </div>
+      </div>
+      <div class="row">
+        <div class="id">B3</div>
+        <div class="body">
+          <span class="name">LVC Integration</span>
+          <span class="oneline">JMRC distributed mission training exercise shows federated LVC at scale.</span>
+        </div>
+        <div class="intensity" data-level="low">
+          low (2)
+        </div>
+      </div>
+      <div class="row">
+        <div class="id">B4</div>
+        <div class="body">
+          <span class="name">Learning Science</span>
+          <span class="oneline">Microlearning pilot in IET context worth controlled follow-up.</span>
+        </div>
+        <div class="intensity" data-level="low">
+          low (2)
+        </div>
+      </div>
+      <div class="row">
+        <div class="id">B5</div>
+        <div class="body">
+          <span class="name">Leader Development</span>
+          <span class="oneline">War College broadening pathway redesigned.</span>
+        </div>
+        <div class="intensity" data-level="low">
+          low (1)
+        </div>
+      </div>
+      <div class="row">
+        <div class="id">B6</div>
+        <div class="body">
+          <span class="name">Training Analytics &amp; Infrastructure</span>
+          <span class="oneline">xAPI now at brigade level; stewardship framework needed.</span>
+        </div>
+        <div class="intensity" data-level="low">
+          low (2)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Key Developments</h2>
+    <article class="key-dev">
+      <h3>STE prototype crew-station timing data</h3>
+      <p class="what">MS&amp;T reports a single-battalion trial in which the STE prototype compressed a 12-hour CCTT block to 7 hours. The figure is from the vendor; the trial was not independently instrumented.</p>
+      <p class="sowhat">If reproducible, the figure rebuilds the STE business case at battalion level. TDDG should not cite the figure publicly until TCM-Live runs an instrumented replication.</p>
+      <div class="tags">
+<span class="tag-branch">B2</span><span class="tag-branch">B6</span>        · refs: <code>1e3e5a59f46b9cd7</code>      </div>
+    </article>
+    <article class="key-dev">
+      <h3>xAPI adoption at brigade level</h3>
+      <p class="what">AFCEA reports brigade-level LMS instances across multiple components now emit xAPI activity statements consistently for the first time.</p>
+      <p class="sowhat">Federated training analytics moves from concept to pilot. Analytics branch should publish a stewardship and access framework before access requests outpace governance.</p>
+      <div class="tags">
+<span class="tag-branch">B6</span><span class="tag-branch">B4</span>        · refs: <code>9734381462fac601</code>      </div>
+    </article>
+    <article class="key-dev">
+      <h3>FM 7-0 revision tied to MDO and LSCO</h3>
+      <p class="what">Modern War Institute summarises the FM 7-0 revision and the related training and education concept update.</p>
+      <p class="sowhat">Institutional and operational training programmes will need curriculum review against the revision; CGSC and ILE syllabi are first-order check.</p>
+      <div class="tags">
+<span class="tag-branch">B1</span><span class="tag-branch">B3</span>        · refs: <code>6d978a722d7a745b</code>      </div>
+    </article>
+  </section>
+
+  <section>
+    <h2>Branch Sections</h2>
+    <article class="branch-section">
+      <h3><span class="num">B1</span>Doctrine &amp; Concepts</h3>
+<p class="summary">The month&#39;s doctrine signal is the FM 7-0 revision and its supporting training and education concept update. Implication: curriculum review across CGSC and ILE.</p>      <ul class="items">
+        <li>
+          <span class="item-title">FM 7-0 revision</span>
+<span class="item-impl">Review CGSC + ILE syllabi against the revision; flag deltas.</span>          <span class="tags">refs: <code>6d978a722d7a745b</code></span>
+        </li>
+      </ul>
+    </article>
+    <article class="branch-section">
+      <h3><span class="num">B2</span>Simulation &amp; Synthetic Training</h3>
+<p class="summary">The STE prototype trial timing data is the headline. The figure needs independent replication before being treated as a benchmark.</p>      <ul class="items">
+        <li>
+          <span class="item-title">STE prototype crew-station timing</span>
+<span class="item-impl">Schedule a TCM-Live instrumented replication before public citation.</span>          <span class="tags">refs: <code>1e3e5a59f46b9cd7</code></span>
+        </li>
+      </ul>
+    </article>
+    <article class="branch-section">
+      <h3><span class="num">B3</span>LVC Integration</h3>
+<p class="summary">JMRC distributed mission training shows LVC moving from demo toward operationally useful federated exercises.</p>      <ul class="items">
+        <li>
+          <span class="item-title">JMRC DMT exercise</span>
+<span class="item-impl">Document standards and middleware used; replicate at NTC next rotation.</span>          <span class="tags">refs: <code>237e669e07e6c7e2</code></span>
+        </li>
+      </ul>
+    </article>
+    <article class="branch-section">
+      <h3><span class="num">B4</span>Learning Science</h3>
+<p class="summary">Microlearning is entering the IET pipeline; measurement frameworks need to keep pace.</p>      <ul class="items">
+        <li>
+          <span class="item-title">Microlearning in basic training</span>
+<span class="item-impl">Run a controlled cohort comparison instrumented with xAPI.</span>          <span class="tags">refs: <code>ef82cf87d924d163</code></span>
+        </li>
+      </ul>
+    </article>
+    <article class="branch-section">
+      <h3><span class="num">B5</span>Leader Development</h3>
+<p class="summary">Carlisle has redesigned broadening assignments; PME curriculum and selection boards should be checked for alignment.</p>      <ul class="items">
+        <li>
+          <span class="item-title">Carlisle broadening pathway</span>
+<span class="item-impl">Brief War College on PME alignment options at next planning conference.</span>          <span class="tags">refs: <code>1cea98c7f4581ca4</code></span>
+        </li>
+      </ul>
+    </article>
+    <article class="branch-section">
+      <h3><span class="num">B6</span>Training Analytics &amp; Infrastructure</h3>
+<p class="summary">Brigade-level xAPI adoption is the most actionable analytics signal of the month. Stewardship needs to lead access requests.</p>      <ul class="items">
+        <li>
+          <span class="item-title">xAPI at brigade</span>
+<span class="item-impl">Stand up a stewardship pilot at one BCT; publish access framework.</span>          <span class="tags">refs: <code>9734381462fac601</code></span>
+        </li>
+      </ul>
+    </article>
+  </section>
+
+  <section>
+    <h2>Cross-Cutting Themes</h2>
+    <article class="theme">
+      <h3>Independent measurement is the gating constraint</h3>
+      <p>Three of this month&#39;s items hinge on whether the Army can produce its own measurement evidence: vendor STE timing claims, microlearning retention data from IET, and xAPI data quality at brigade level. Without independent measurement, each remains a story rather than a basis for a decision.</p>
+      <div class="tags">refs: <code>1e3e5a59f46b9cd7</code>, <code>9734381462fac601</code>, <code>ef82cf87d924d163</code></div>
+    </article>
+  </section>
+
+  <section>
+    <h2>Watch Areas</h2>
+    <div class="watch">
+      <p class="signal">TCM-Live STE replication outcome</p>
+<p class="why">Determines whether the vendor 12-to-7 figure is usable for the STE business case.</p>      <ul class="indicators">
+<li>TCM-Live publishes instrumented trial protocol</li><li>Replication run completed within next 90 days</li><li>Result reported in writing rather than verbally</li>      </ul>
+    </div>
+    <div class="watch">
+      <p class="signal">xAPI data quality at the first BCT pilot</p>
+<p class="why">Determines whether the federated analytics path is operationally viable or needs a re-think.</p>      <ul class="indicators">
+<li>Activity-statement completeness &gt;80% across instrumented courses</li><li>Access requests below stewardship-framework deadline</li>      </ul>
+    </div>
+  </section>
+
+  <section class="sources">
+    <h2>Source References</h2>
+    <ol>
+      <li>
+<a href="https://halldale.com/x1">STE prototype field test validation results</a>        <span class="src-meta">— MS&amp;T Magazine, 2026-05-15 · <code>1e3e5a59f46b9cd7</code></span>
+      </li>
+      <li>
+<a href="https://afcea.org/x2">xAPI adoption reaches brigade-level LMS</a>        <span class="src-meta">— AFCEA SIGNAL, 2026-05-15 · <code>9734381462fac601</code></span>
+      </li>
+      <li>
+<a href="https://ausa.org/x3">Officer development pathway redesign at Carlisle</a>        <span class="src-meta">— AUSA, 2026-05-15 · <code>1cea98c7f4581ca4</code></span>
+      </li>
+      <li>
+<a href="https://mwi.westpoint.edu/x4">Multi-domain doctrine update reflected in FM 7-0 revision</a>        <span class="src-meta">— Modern War Institute, 2026-05-15 · <code>6d978a722d7a745b</code></span>
+      </li>
+      <li>
+<a href="https://wavellroom.com/x5">Distributed mission training exercise at JMRC</a>        <span class="src-meta">— Wavell Room, 2026-05-15 · <code>237e669e07e6c7e2</code></span>
+      </li>
+      <li>
+<a href="https://trainingindustry.com/x6">Microlearning adoption in Army basic training pilot</a>        <span class="src-meta">— Training Industry, 2026-05-15 · <code>ef82cf87d924d163</code></span>
+      </li>
+    </ol>
+  </section>
+
+
+</main>
+
+<div class="classification bottom" style="background:#0f1115">UNCLASSIFIED // FOR OFFICIAL USE</div>
+
+</body>
+</

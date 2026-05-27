@@ -39,8 +39,20 @@ claude_model_filter:   claude-haiku-4-5-20251001   # cheap filter step
 claude_model_analyse:  claude-opus-4-6             # heavy synthesis step
 claude_model_render:   claude-opus-4-6             # final bulletin writing
 
-# Max output tokens per Claude call (raise for longer bulletins).
+# Max output tokens for the monthly synthesis + sanity-check stages.
+# The per-article stage uses max_output_tokens_per_article instead.
 max_output_tokens: 8000
+
+# Per-article analysis output cap. Per-article JSON is small (~10 fields,
+# mostly 1-2 sentences each), so 1500 tokens is generous. Raise if you
+# notice the analyse log reporting truncated responses.
+max_output_tokens_per_article: 1500
+
+# Hard ceiling on how many articles analyse.py will send to the API in one
+# run. If the filtered set exceeds this, the script aborts with guidance to
+# tighten the filter rather than silently burning tokens.
+# Rough budget at 80 articles x Opus (4.5k tokens each, ~360k tokens total).
+max_articles_per_run: 80
 
 # ----------------------------------------------------------------------------
 # Bulletin output

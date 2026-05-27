@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TDDG Training Futures Bulletin</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="classification">UNCLASSIFIED // FOR OFFICIAL USE</div>
+
+<main>
+
+  <header class="site-mast">
+    <div class="eyebrow">HQ TRADOC · Training Doctrine Development Group</div>
+    <h1>Training Futures Bulletin</h1>
+    <nav>
+      <a href="archive/index.html">Archive</a>
+    </nav>
+  </header>
+
+  {% if current %}
+  <section>
+    <h2>Current bulletin</h2>
+    <article class="teaser">
+      <p class="month">{{ current.month }}</p>
+      {% if current.bluf and current.bluf.headline %}
+      <p class="headline">{{ current.bluf.headline }}</p>
+      {% endif %}
+      {% if current.bluf and current.bluf.summary %}
+      <p class="summary">{{ current.bluf.summary }}</p>
+      {% endif %}
+
+      {% if current.branch_relevance_dashboard %}
+      <div class="branch-tags" aria-label="Branch activity this month">
+        {% for row in current.branch_relevance_dashboard %}
+        <span class="tag" data-intensity="{{ row.intensity }}">
+          B{{ row.branch_id }} · {{ row.branch_name }}<span class="count">{{ row.article_count }}</span>
+        </span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="cta">
+        <a href="archive/{{ current.month }}/index.html">Read the full bulletin →</a>
+      </div>
+    </article>
+  </section>
+  {% else %}
+  <section>
+    <h2>Current bulletin</h2>
+    <p class="empty">No bulletins published yet.</p>
+  </section>
+  {% endif %}
+
+  {% if recent %}
+  <section>
+    <h2>Recent</h2>
+    <ul class="recent-list">
+      {% for r in recent %}
+      <li>
+        <a href="archive/{{ r.month }}/index.html">
+          <span class="month-label">{{ r.month }}</span>
+          <span class="headline">{{ r.headline }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <footer class="site-foot">
+    Site generated {{ generated_at }}.
+    Source: <code>github.com/&lt;org&gt;/tddg-bulletin-agent</code> (configure in repo settings).
+  </footer>
+
+</main>
+
+<div class="classification">UNCLASSIFIED // FOR OFFICIAL USE</div>
+
+</body>
+</html>
