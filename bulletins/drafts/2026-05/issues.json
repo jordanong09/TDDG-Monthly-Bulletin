@@ -4,26 +4,46 @@
       "severity": "low",
       "category": "stylistic",
       "section": "bluf.summary",
-      "where": "slower-burn",
-      "explanation": "Mild colloquialism in an otherwise staff-officer register.",
-      "suggested_fix": "Replace 'slower-burn' with 'less time-sensitive'."
+      "where": "The pattern across all four is the same",
+      "explanation": "Mildly editorial framing for a BLUF that otherwise stays factual. The 'same pattern' framing leans on the cross-cutting theme; a branch chief reading BLUF in 90 seconds should be able to evaluate the claim quickly.",
+      "suggested_fix": "Consider replacing with: 'Three of the four describe the same pattern: units and SOF moving faster than TDDG's institutional cycle.' Direct, no editorial."
+    },
+    {
+      "severity": "medium",
+      "category": "structural",
+      "section": "source_references",
+      "where": "defone-ngc2-ivysting-may2026 dated 2026-02-06",
+      "explanation": "One of the four cited articles is dated February 2026, not May 2026. The article previews the May Ivy Mass red-team event but the source itself predates the bulletin month. Acceptable because the May event is the subject, but the date is honest and visible.",
+      "suggested_fix": "If a Defense One follow-up on Ivy Mass appears in late May or early June, swap the citation. Until then, leave it with the date as published - do not paper over the publication date."
+    },
+    {
+      "severity": "low",
+      "category": "filler",
+      "section": "branch_sections.branch_id=4.items",
+      "where": "Single item from a single article",
+      "explanation": "Branch 4 (Learning Science) has only one item sourced from one article. The section is honest but thin. A branch chief might reasonably ask why this isn't combined into the cross-cutting theme.",
+      "suggested_fix": "Keep the Branch 4 section as is; the implication is specific enough (measurable competencies, BCT pilot, validation guard-rails) to justify standing alone. Note the thinness in the BLUF if it persists next month."
+    },
+    {
+      "severity": "low",
+      "category": "structural",
+      "section": "cross_cutting_themes",
+      "where": "Single theme supported by exactly 3 articles",
+      "explanation": "The cross-cutting theme meets the >=3-article minimum exactly. The framing is defensible but a more conservative bulletin might require >=4 articles for a theme when the corpus is small (4 articles total).",
+      "suggested_fix": "Acceptable for this month given source diversity. If the focused-source pilot continues at 4-5 articles per month, consider raising the theme threshold to >=4 in monthly_synthesis.md."
+    },
+    {
+      "severity": "low",
+      "category": "stylistic",
+      "section": "key_developments[3].so_what",
+      "where": "the most actionable PME prescription published this month",
+      "explanation": "Mildly superlative framing. 'Most actionable' is a judgement call without explicit comparison.",
+      "suggested_fix": "Replace 'most actionable' with 'a concrete' - the article speaks for itself without the superlative."
     }
   ],
   "summary": {
-    "issue_count_by_severity": {
-      "low": 1,
-      "medium": 0,
-      "high": 0
-    },
-    "issue_count_by_category": {
-      "hype": 0,
-      "marketing": 0,
-      "unsupported": 0,
-      "misassignment": 0,
-      "filler": 0,
-      "stylistic": 1,
-      "structural": 0
-    }
+    "issue_count_by_severity": {"low": 4, "medium": 1, "high": 0},
+    "issue_count_by_category": {"hype": 0, "marketing": 0, "unsupported": 0, "misassignment": 0, "filler": 1, "stylistic": 2, "structural": 2}
   },
   "ready_for_review": true
 }

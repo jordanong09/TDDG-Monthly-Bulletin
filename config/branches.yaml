@@ -51,6 +51,11 @@ branches:
       - training and education concept
       - doctrine 2.0
       - rapid doctrine
+      - agentic warfare
+      - agentic AI
+      - manned-unmanned teaming
+      - MUM-T
+      - continuous transformation
 
   - id: 2
     name: Simulation & Synthetic Training
@@ -95,6 +100,11 @@ branches:
       - virtual world
       - generative AI in simulation
       - AI-driven scenario
+      - AI-enabled targeting
+      - AI-enabled operating system
+      - agentic AI
+      - drone simulator
+      - counter-UAS training
 
   - id: 3
     name: LVC Integration
@@ -140,6 +150,12 @@ branches:
       - interoperability
       - persistent synthetic environment
       - synthetic wrap
+      - next-gen C2
+      - NGC2
+      - Project Flytrap
+      - Ivy Sting
+      - Ivy Mass
+      - Project Convergence
 
   - id: 4
     name: Learning Science
@@ -184,6 +200,9 @@ branches:
       - transfer of training
       - retention
       - skill decay
+      - data literacy
+      - AI literacy
+      - graded competency
 
   - id: 5
     name: Leader Development
@@ -225,6 +244,12 @@ branches:
       - self-development
       - 360 feedback
       - command selection
+      - data literacy
+      - Captain's Career Course
+      - CCC
+      - emerging-tech assessment
+      - drone operator training
+      - career-course reform
 
   - id: 6
     name: Training Analytics & Infrastructure
@@ -267,3 +292,9 @@ branches:
       - data-driven training
       - training feedback
       - assessment design
+      - next-gen C2
+      - NGC2
+      - C2 data fabric
+      - generative AI
+      - AI agents
+      - fog computing

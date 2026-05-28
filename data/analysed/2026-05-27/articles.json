@@ -1,1 +1,110 @@
-[]
+[
+  {
+    "id": "wotr-armyaviation-may2026",
+    "title": "Army Aviation's Wasted Decade: Lessons for the Next Generation of Drone Integration",
+    "url": "https://warontherocks.com/army-aviations-wasted-decade-lessons-for-the-next-generation-of-drone-integration/",
+    "source_id": "war_on_the_rocks",
+    "source_name": "War on the Rocks",
+    "published_date": "2026-05-18T07:30:12+00:00",
+    "summary": "Jake Steckler, GovAI research scholar and former Army aviation officer, argues Army Aviation spent a decade failing to integrate Apaches with Shadow drones and ended that effort in 2025. Three failure modes: cultural inertia framing drones as accessories to manned aviation; technical and talent mismatches between manned and unmanned crews; absence of feedback channels that rewarded reporting success over identifying failure. Argues PME (specifically the Captain's Career Course) should treat emerging-tech assessment as a core competency.",
+    "categories": ["doctrine", "leadership"],
+    "collected_at": "2026-05-27T16:00:00+00:00",
+    "analysis": {
+      "relevant": true,
+      "relevance_score": 0.88,
+      "summary": "Practitioner essay on Army Aviation's failed decade-long effort to integrate Apaches with Shadow drones, ended in 2025. Names cultural inertia, talent and technical mismatch, and feedback suppression as the failure modes. Proposes the Captain's Career Course add critical assessment of emerging technologies as a graded competency, and that the drone-operator talent model align rank, pay, and selection rigor with the demands of the role.",
+      "why_it_matters": "Anchors a concrete PME critique in a case study with named officers, dates, and dollar figures. The argument generalises to every branch whose career courses lag adversary tech cycles. Ukraine comparison data (80 percent of drone success depends on pilot skill, Ukraine has 30-plus drone-operator schools, the Army's Unmanned Advanced Lethality Course runs three weeks) is the calibration TDDG needs.",
+      "training_implication": "Career-course curriculum should treat emerging-tech assessment as a graded written competency rather than situational awareness. Drone-operator courses need expanded length and selectivity. Ranges that support high-tempo experimentation against electronic-warfare threats are missing at scale and require procurement attention as much as the drones themselves. Officer evaluations that reward reported success over identified failure are part of the failure mode, not external to it.",
+      "branch_relevance": [
+        {"branch_id": 1, "score": 0.70, "rationale": "Doctrinal critique of how the Army absorbs (or fails to absorb) emerging-tech cycles."},
+        {"branch_id": 5, "score": 0.88, "rationale": "Direct PME prescription with a named course (CCC) and a named graded competency."},
+        {"branch_id": 3, "score": 0.45, "rationale": "Calls for dedicated drone ranges and realistic EW threat environments - an LVC infrastructure question."}
+      ],
+      "possible_implementation": "Pilot an emerging-tech assessment block in the Aviation Captain's Career Course in FY27 with a graded written deliverable: students produce threat-and-opportunity assessments of two named systems. Pair with a separate review of the Unmanned Advanced Lethality Course length and content against Ukrainian schools.",
+      "follow_up_study": "Cross-branch comparison: which Captain's Career Courses currently teach emerging-tech assessment, what graded products they produce, and how that correlates with branch adoption of new systems.",
+      "watch_signals": ["pme-emerging-tech", "captain-career-course-reform", "drone-operator-talent-model", "candid-feedback-channels"],
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "defone-flytrap-may2026",
+    "title": "US infantry's drone-warfare experiments are getting bigger",
+    "url": "https://www.defenseone.com/defense-systems/2026/05/us-infantrys-drone-warfare-experiments-are-getting-bigger/413568/",
+    "source_id": "defense_one",
+    "source_name": "Defense One",
+    "published_date": "2026-05-14T23:11:02+00:00",
+    "summary": "Project Flytrap 5.0, a US Army-NATO exercise at Pabradė Training Area in Lithuania, integrated reconnaissance drones, first-person-view attack drones, jammers, and AI-enabled operating systems with 2nd Cavalry Regiment Strykers and unmanned ground vehicles. Conducted at squadron and troop level. New TTPs developed for synchronising intelligence, fires, and maneuver against a multi-layered drone threat. Flytrap 6.0 will scale further in unit size, UAS density, and EW realism.",
+    "categories": ["simulation", "analytics"],
+    "collected_at": "2026-05-27T16:00:00+00:00",
+    "analysis": {
+      "relevant": true,
+      "relevance_score": 0.78,
+      "summary": "Project Flytrap 5.0 ran in May 2026 at Pabradė Training Area, Lithuania, with 2nd Cavalry Regiment integrating over 20 pieces of counter-UAS and friendly-UAS equipment at troop and squadron level. The unit developed new TTPs for synchronising intelligence, fires, and maneuver under a multi-layered drone threat. Flytrap 6.0 will scale further in unit size, UAS density, and EW realism.",
+      "why_it_matters": "The exercise shows drone-warfare integration at tactical echelon has moved from contractor-led demos to unit-led training. New TTPs are emerging from the units that own the problem rather than being prescribed from above. The scaling trajectory (5.0 to 6.0) is the right thing to track over the next 12 months.",
+      "training_implication": "CTC rotations at JMRC and JRTC need to mirror the Flytrap exercise architecture at squadron level before they fall behind unit-led innovation. Instrumentation should capture human decision points in the intelligence-fires-maneuver synthesis, not just engagement outcomes. The TTPs developed by 2nd Cavalry Regiment will perish without a deliberate capture mechanism into TRADOC doctrine and CTC opposing-force playbooks.",
+      "branch_relevance": [
+        {"branch_id": 2, "score": 0.55, "rationale": "AI-enabled operating systems and counter-UAS detect systems are synthetic and AI-enabled training components."},
+        {"branch_id": 3, "score": 0.80, "rationale": "Live exercise integrating multiple system stacks at squadron level - core LVC integration territory."},
+        {"branch_id": 1, "score": 0.40, "rationale": "Doctrinal implications for counter-UAS TTPs across the force."}
+      ],
+      "possible_implementation": "TDDG should engage 2nd Cavalry Regiment now to capture the Flytrap 5.0 lessons in a structured AAR product before the unit rotates or memory fades. Coordinate with JMRC to make the Flytrap 6.0 architecture the default CTC rotation pattern for any unit deploying to Europe.",
+      "follow_up_study": "What instrumentation captured the synchronisation between intelligence, fires, and maneuver at troop level in Flytrap 5.0? Is it portable to NTC and JRTC, and what does it cost to scale?",
+      "watch_signals": ["flytrap-6.0-scope", "ctc-counter-uas", "tactical-edge-ai-systems", "ttp-capture-mechanism"],
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "defone-sof-ai-may2026",
+    "title": "Smaller, easier, smarter: what special operations forces need from AI, now",
+    "url": "https://www.defenseone.com/technology/2026/05/smaller-easier-smarter-what-special-operations-forces-need-ai-now/413748/",
+    "source_id": "defense_one",
+    "source_name": "Defense One",
+    "published_date": "2026-05-24T08:37:39+00:00",
+    "summary": "At SOF Week 2026 in Tampa, US Special Operations Command leaders said SOF units already use generative AI heavily for resource allocation and force deployment and are exploring AI agents and voice-command interfaces for tactical operations. Current AI tools are too dependent on cloud connectivity; SOCOM wants smaller models that run at the tactical edge, with voice and gesture control to manage cognitive load. Acquisition is being weighted toward smaller startups rather than incumbent vendors.",
+    "categories": ["simulation", "analytics"],
+    "collected_at": "2026-05-27T16:00:00+00:00",
+    "analysis": {
+      "relevant": true,
+      "relevance_score": 0.72,
+      "summary": "SOCOM leaders at SOF Week 2026 disclosed that special operators already use generative AI heavily for resource allocation and force deployment, and are pursuing fog-computing approaches that put smaller models at the tactical edge. AI agents that plan and execute strategies are explicitly named as a target capability. The acquisition pathway is being widened toward smaller startups.",
+      "why_it_matters": "SOF is operating ahead of the conventional force on AI for staff and tactical work. The gap is no longer technological; it is institutional. Conventional formations lack the training, doctrine, and tools to use generative AI for the same staff workflows. If the gap widens, TDDG will be writing training programmes that lag the operational use case by 18 to 24 months.",
+      "training_implication": "Battalion and brigade staffs need explicit training on generative AI for staff work, with validation guard-rails, before unsupervised adoption outpaces governance. Adult-learning design for this should reflect that SOF has already done the discovery; TDDG can learn from SOF's adoption pattern rather than recapitulate it. PME at intermediate level (CGSC) should add an applied generative-AI block tied to staff products.",
+      "branch_relevance": [
+        {"branch_id": 4, "score": 0.65, "rationale": "Adult-learning design for adding generative-AI competencies to staff training."},
+        {"branch_id": 6, "score": 0.78, "rationale": "Analytics and tooling for staff workflows; SOF is the leading-edge case."},
+        {"branch_id": 2, "score": 0.40, "rationale": "AI agents in tactical decision support overlap with synthetic-scenario generation."}
+      ],
+      "possible_implementation": "Stand up a generative-AI for staff work pilot at one BCT during the next training cycle. Borrow SOF's adoption pattern (heavy use cases, then guard-rails) rather than starting from scratch. Define measurable competencies in resource allocation, force deployment planning, and intelligence summarisation.",
+      "follow_up_study": "Map the SOF-to-conventional-force generative-AI competency gap. Is the binding constraint tools, training, or doctrine? PEO Digital Applications would close the question quickly.",
+      "watch_signals": ["sof-conventional-ai-gap", "fog-computing-tactical-edge", "ai-agents-staff-work", "generative-ai-governance"],
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "defone-ngc2-ivysting-may2026",
+    "title": "Army moves to link a full division with its next-gen C2 prototype (Ivy Mass red-team event scheduled for May 2026)",
+    "url": "https://www.defenseone.com/defense-systems/2026/02/army-moves-link-full-division-its-next-gen-c2-prototype/411259/",
+    "source_id": "defense_one",
+    "source_name": "Defense One",
+    "published_date": "2026-02-06T00:00:00+00:00",
+    "summary": "The 4th Infantry Division at Fort Carson is scaling testing of the Army's next-generation command-and-control (NGC2) prototype from battalion to division level. The article describes Ivy Sting 4 in late January 2026 and previews Ivy Mass in May 2026 when a red team from Army Training and Transformation Command will attack the system live. The Continuous Transformation acquisition model (more than a dozen vendors including Anduril and Palantir building while soldiers test) is being validated at scale.",
+    "categories": ["simulation", "analytics"],
+    "collected_at": "2026-05-27T16:00:00+00:00",
+    "analysis": {
+      "relevant": true,
+      "relevance_score": 0.82,
+      "summary": "4th Infantry Division is scaling NGC2 from battalion to division level through the Ivy Sting series. The May 2026 Ivy Mass event will introduce a red team from Army Training and Transformation Command to attack the system live. NGC2 integrates fires, logistics, casualty tracking, and intelligence into a single staff picture and was tested in degraded, denied, intermittent and limited (DDIL) conditions in Ivy Sting 4. Project Convergence Capstone 6 this summer is the next division-scale milestone.",
+      "why_it_matters": "If NGC2 survives Ivy Mass red-teaming, the training enterprise must reorient quickly: every CTC rotation, training management system, and simulator needs to reflect the C2 architecture that emerges. The Continuous Transformation acquisition model is itself a training-relevant lesson: units are training and building simultaneously, which inverts the traditional fielding sequence. The model only works if TDDG and TRADOC can close the loop from soldier feedback into next-iteration training scenarios fast enough.",
+      "training_implication": "Training infrastructure (TMS, simulators, AAR) needs an active plan to mirror NGC2 design decisions on a 90-day cadence rather than annual update cycles. CTC opposing-force playbooks need a cyber and electronic warfare red-team chapter that mirrors the Ivy Mass methodology. Branch 3 (LVC) and Branch 6 (Infrastructure) should have an observer plan for Ivy Mass and Project Convergence Capstone 6 with a written remit to capture infrastructure-relevant findings.",
+      "branch_relevance": [
+        {"branch_id": 3, "score": 0.78, "rationale": "Networked training architectures must mirror operational C2 changes; the DDIL test methodology is portable to LVC scenarios."},
+        {"branch_id": 6, "score": 0.85, "rationale": "Infrastructure cascade from a successful NGC2 fielding is the load-bearing branch implication."},
+        {"branch_id": 1, "score": 0.50, "rationale": "Continuous Transformation as a doctrinal model for tech adoption is itself in scope."}
+      ],
+      "possible_implementation": "Send a TDDG observer team to Ivy Mass in May and Project Convergence Capstone 6 this summer with a written remit: document every infrastructure-relevant design choice in NGC2 that cascades into CTC, TMS, or simulator change. Brief findings at the next TDDG cross-branch.",
+      "follow_up_study": "What changes in training infrastructure must follow whatever NGC2 design choices survive Ivy Mass and Project Convergence Capstone 6? Specifically, what new data-interchange standards (xAPI-equivalent for operational C2) does NGC2 introduce that training systems will need to consume?",
+      "watch_signals": ["ngc2-ivy-mass-outcome", "project-convergence-capstone-6", "continuous-transformation-acquisition", "ddil-c2-resilience"],
+      "confidence": "high"
+    }
+  }
+]

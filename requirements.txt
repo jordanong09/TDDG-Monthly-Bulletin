@@ -1,4 +1,6 @@
-anthropic==0.39.0
+# anthropic >=0.42 required: older versions pass proxies= to httpx, which
+# was renamed to mounts= in httpx 0.28+, causing TypeError on client init.
+anthropic>=0.42.0,<1.0.0
 feedparser==6.0.11
 requests==2.32.3
 beautifulsoup4==4.12.3

@@ -1,25 +1,92 @@
 # ============================================================================
 # TDDG Monthly Bulletin - Source Inventory
 # ----------------------------------------------------------------------------
-# Each entry MUST include:
-#   id          unique snake_case identifier
-#   name        human-readable source name
-#   url         feed URL (for type=rss) or landing page (for type=html)
-#   type        rss | html
-#   category    one or more of: doctrine, simulation, lvc, learning,
-#               leadership, analytics, infrastructure, general_military
-#   language    ISO 639-1, default en
-#   enabled     true | false
-#   notes       free text - why we monitor, known caveats, alt feeds
+# Focused source list (May 2026 pilot configuration).
 #
-# Add new sources at the bottom. Keep IDs stable - downstream dedupe and
-# analytics keys off them. Verify URLs periodically; .feed/ paths drift.
-# Only open-source / publicly accessible material - no paywalls or auth.
+# Each source has a primary use mapped to one or two branches. Categories
+# are deliberately narrow so the pre-filter's +0.15 category boost lines
+# up cleanly with the source's intended contribution.
+#
+# Source            Primary use                                  Maps to branches
+# ----------------  -------------------------------------------  ----------------
+# war_on_the_rocks  Doctrine / leadership / strategic adaptation  1, 5
+# defense_one       AI / analytics / innovation                   2, 6
+# rusi              Operational lessons / transformation          1, 4
+# army_technology   Infrastructure / LVC / systems                3, 6
+# modern_war_inst.  Leadership / PME / tactical learning          5, 4, 1
+#
+# To re-enable a source from the disabled list, change its enabled: false
+# to enabled: true. The script will pick it up on the next run.
 # ============================================================================
 
 sources:
 
-  # -- US Army TRADOC ecosystem -------------------------------------------------
+  # ===== FOCUSED SOURCES (active) ============================================
+
+  - id: war_on_the_rocks
+    name: War on the Rocks
+    url: https://warontherocks.com/feed/
+    type: rss
+    category: [doctrine, leadership]
+    language: en
+    enabled: true
+    notes: |
+      Doctrine, leadership, and strategic adaptation. Articles often surface
+      from serving and recently-retired officers writing about training
+      reform, PME, and doctrinal change. Filter aggressively at relevance
+      step - the feed covers more than training-futures topics.
+
+  - id: defense_one
+    name: Defense One
+    url: https://www.defenseone.com/rss/all/
+    type: rss
+    category: [simulation, analytics]
+    language: en
+    enabled: true
+    notes: |
+      AI, analytics, and innovation in defence. Most relevant items: AI for
+      training and decision support, defence data, command and control
+      modernisation, autonomous systems. Subset feeds available at
+      /rss/defense-systems/ and /rss/technology/ if all/ is too noisy.
+
+  - id: rusi
+    name: RUSI - Royal United Services Institute
+    url: https://www.rusi.org/rss/all-content
+    type: rss
+    category: [doctrine, learning]
+    language: en
+    enabled: true
+    notes: |
+      Operational lessons and military transformation, with strong work on
+      training pedagogy and individualised training pathways. UK perspective
+      but generalisable to TDDG concerns.
+
+  - id: army_technology
+    name: Army Technology
+    url: https://www.army-technology.com/feed/
+    type: rss
+    category: [infrastructure, lvc]
+    language: en
+    enabled: true
+    notes: |
+      Trade publication covering training infrastructure, LVC systems,
+      synthetic environments, simulators, and contractor solutions. Treat
+      vendor coverage as marketing claims unless independently corroborated.
+
+  - id: modern_war_institute
+    name: Modern War Institute at West Point
+    url: https://mwi.westpoint.edu/feed/
+    type: rss
+    category: [leadership, learning, doctrine]
+    language: en
+    enabled: true
+    notes: |
+      Leadership, PME, and tactical learning. Officer-led commentary on
+      modern warfare. Strong on leader development, tactical innovation,
+      and the relationship between PME and operational effectiveness.
+
+  # ===== DISABLED (kept for future re-enablement) ============================
+  # Re-enable by flipping enabled: false -> enabled: true.
 
   - id: mad_scientist_lab
     name: Mad Scientist Laboratory (TRADOC G-2)
@@ -27,8 +94,8 @@ sources:
     type: rss
     category: [doctrine, simulation, general_military]
     language: en
-    enabled: true
-    notes: TRADOC's flagship futures blog. High signal on operational environment, character of war, emerging tech.
+    enabled: false
+    notes: TRADOC's futures blog. Too broad for current focused pilot; re-enable when scaling.
 
   - id: army_university_press_review
     name: Army University Press - Military Review
@@ -36,8 +103,8 @@ sources:
     type: html
     category: [doctrine, leadership]
     language: en
-    enabled: true
-    notes: Premier US Army professional journal. No public RSS - scrape new-article links from landing page.
+    enabled: false
+    notes: Premier US Army professional journal. Re-enable once HTML selectors are written.
 
   - id: nco_journal
     name: NCO Journal (Army University Press)
@@ -45,8 +112,8 @@ sources:
     type: html
     category: [leadership, learning]
     language: en
-    enabled: true
-    notes: NCO development and training perspectives. HTML scrape.
+    enabled: false
+    notes: NCO development perspectives. Re-enable once selectors written.
 
   - id: call_publications
     name: Center for Army Lessons Learned (CALL)
@@ -54,10 +121,8 @@ sources:
     type: html
     category: [doctrine, learning, analytics]
     language: en
-    enabled: true
-    notes: After-action and observation reports. Many PDFs - parse landing pages, not the PDFs themselves at fetch time.
-
-  # -- US Joint / DoD ----------------------------------------------------------
+    enabled: false
+    notes: After-action reports as PDFs. Re-enable once a PDF-handling fetch path is built.
 
   - id: joint_force_quarterly
     name: Joint Force Quarterly (NDU Press)
@@ -65,8 +130,8 @@ sources:
     type: html
     category: [doctrine, leadership]
     language: en
-    enabled: true
-    notes: Joint-level professional journal. Quarterly cadence - low frequency, high quality.
+    enabled: false
+    notes: Joint-level professional journal. Quarterly cadence.
 
   - id: marine_corps_gazette
     name: Marine Corps Gazette
@@ -74,8 +139,7 @@ sources:
     type: html
     category: [doctrine, leadership]
     language: en
-    enabled: true
-    notes: USMC professional journal. Some content paywalled - filter for open articles only.
+    enabled: false
 
   - id: usni_proceedings
     name: USNI Proceedings (US Naval Institute)
@@ -83,8 +147,7 @@ sources:
     type: html
     category: [doctrine, leadership, general_military]
     language: en
-    enabled: true
-    notes: Includes naval/marine training and education content. Some paywalled - take open content only.
+    enabled: false
 
   - id: diu_news
     name: Defense Innovation Unit (DIU) news
@@ -92,8 +155,7 @@ sources:
     type: html
     category: [simulation, infrastructure]
     language: en
-    enabled: true
-    notes: Procurement and prototyping signals for training tech.
+    enabled: false
 
   - id: darpa_news
     name: DARPA news
@@ -101,28 +163,7 @@ sources:
     type: html
     category: [simulation, infrastructure, analytics]
     language: en
-    enabled: true
-    notes: Forward research signals - cognitive science, AR/VR, autonomy with training implications.
-
-  # -- US think tanks ----------------------------------------------------------
-
-  - id: modern_war_institute
-    name: Modern War Institute at West Point
-    url: https://mwi.westpoint.edu/feed/
-    type: rss
-    category: [doctrine, leadership, general_military]
-    language: en
-    enabled: true
-    notes: Officer-led commentary on modern warfare. Strong on irregular warfare and tactical doctrine.
-
-  - id: war_on_the_rocks
-    name: War on the Rocks
-    url: https://warontherocks.com/feed/
-    type: rss
-    category: [doctrine, general_military]
-    language: en
-    enabled: true
-    notes: Mixed quality but consistently relevant. Filter aggressively at the relevance step.
+    enabled: false
 
   - id: small_wars_journal
     name: Small Wars Journal
@@ -130,8 +171,7 @@ sources:
     type: rss
     category: [doctrine, general_military]
     language: en
-    enabled: true
-    notes: Practitioner-oriented. Irregular cadence.
+    enabled: false
 
   - id: rand_arroyo
     name: RAND Arroyo Center publications
@@ -139,8 +179,7 @@ sources:
     type: html
     category: [doctrine, analytics, general_military]
     language: en
-    enabled: true
-    notes: Army-focused RAND research. Long reports - extract titles + abstracts at fetch.
+    enabled: false
 
   - id: csis_defense
     name: CSIS - International Security Program
@@ -148,8 +187,7 @@ sources:
     type: html
     category: [doctrine, general_military]
     language: en
-    enabled: true
-    notes: Strategic-level analysis. Filter for training/force-development pieces.
+    enabled: false
 
   - id: cnas
     name: Center for a New American Security (CNAS)
@@ -157,8 +195,7 @@ sources:
     type: rss
     category: [doctrine, general_military]
     language: en
-    enabled: true
-    notes: Defense policy think tank with strong tech/training crossover.
+    enabled: false
 
   - id: atlantic_council_scowcroft
     name: Atlantic Council - Scowcroft Center
@@ -166,8 +203,7 @@ sources:
     type: html
     category: [doctrine, general_military]
     language: en
-    enabled: true
-    notes: Defense and security commentary. Selective relevance.
+    enabled: false
 
   - id: hudson_defense
     name: Hudson Institute - National Security
@@ -175,8 +211,7 @@ sources:
     type: html
     category: [doctrine, general_military]
     language: en
-    enabled: true
-    notes: Conservative defense think tank. HTML landing page.
+    enabled: false
 
   - id: ida
     name: Institute for Defense Analyses (IDA)
@@ -184,10 +219,7 @@ sources:
     type: html
     category: [doctrine, analytics, general_military]
     language: en
-    enabled: true
-    notes: FFRDC research. Many reports limited to abstracts publicly.
-
-  # -- UK -------------------------------------------------------------------
+    enabled: false
 
   - id: wavell_room
     name: Wavell Room (UK)
@@ -195,19 +227,7 @@ sources:
     type: rss
     category: [doctrine, leadership, general_military]
     language: en
-    enabled: true
-    notes: British army-focused practitioner site. Excellent on PME and training reform debates.
-
-  - id: rusi
-    name: RUSI - Royal United Services Institute
-    url: https://www.rusi.org/rss/all-content
-    type: rss
-    category: [doctrine, general_military]
-    language: en
-    enabled: true
-    notes: UK defense and security think tank. Strong land warfare and lessons-learned commentary.
-
-  # -- Australia ------------------------------------------------------------
+    enabled: false
 
   - id: the_cove
     name: The Cove (Australian Army)
@@ -215,8 +235,7 @@ sources:
     type: html
     category: [doctrine, learning, leadership]
     language: en
-    enabled: true
-    notes: Australian Army professional development platform. Highly relevant to learning + PME.
+    enabled: false
 
   - id: land_power_forum
     name: Land Power Forum (Australian Army Research Centre)
@@ -224,8 +243,7 @@ sources:
     type: html
     category: [doctrine, general_military]
     language: en
-    enabled: true
-    notes: Australian Army's doctrine and futures blog.
+    enabled: false
 
   - id: aspi_strategist
     name: ASPI - The Strategist
@@ -233,10 +251,7 @@ sources:
     type: rss
     category: [doctrine, general_military]
     language: en
-    enabled: true
-    notes: Australian Strategic Policy Institute commentary.
-
-  # -- NATO -----------------------------------------------------------------
+    enabled: false
 
   - id: nato_review
     name: NATO Review
@@ -244,8 +259,7 @@ sources:
     type: html
     category: [doctrine, general_military]
     language: en
-    enabled: true
-    notes: NATO's policy magazine.
+    enabled: false
 
   - id: nato_act
     name: NATO Allied Command Transformation
@@ -253,8 +267,7 @@ sources:
     type: html
     category: [doctrine, lvc, simulation]
     language: en
-    enabled: true
-    notes: NATO's transformation HQ - training, exercises, future force concepts.
+    enabled: false
 
   - id: nato_sto
     name: NATO Science & Technology Organization (STO)
@@ -262,10 +275,7 @@ sources:
     type: html
     category: [simulation, lvc, analytics]
     language: en
-    enabled: true
-    notes: NATO research output across HFM and MSG panels. Highly relevant to LVC and human-performance work.
-
-  # -- Industry / trade press ------------------------------------------------
+    enabled: false
 
   - id: breaking_defense
     name: Breaking Defense
@@ -273,8 +283,7 @@ sources:
     type: rss
     category: [simulation, lvc, infrastructure, general_military]
     language: en
-    enabled: true
-    notes: Defense trade press. Filter for training/sim/range stories.
+    enabled: false
 
   - id: defense_news_training_sim
     name: Defense News - Training & Sim
@@ -282,8 +291,7 @@ sources:
     type: rss
     category: [simulation, lvc, infrastructure]
     language: en
-    enabled: true
-    notes: Defense News training-and-simulation vertical RSS.
+    enabled: false
 
   - id: national_defense_magazine
     name: National Defense Magazine (NDIA)
@@ -291,8 +299,7 @@ sources:
     type: rss
     category: [simulation, infrastructure, general_military]
     language: en
-    enabled: true
-    notes: NDIA's industry magazine. Strong I/ITSEC coverage.
+    enabled: false
 
   - id: afcea_signal
     name: AFCEA SIGNAL Magazine
@@ -300,8 +307,7 @@ sources:
     type: html
     category: [simulation, lvc, analytics, infrastructure]
     language: en
-    enabled: true
-    notes: C4ISR and training-tech crossover.
+    enabled: false
 
   - id: mst_magazine
     name: MS&T - Military Simulation & Training (Halldale)
@@ -309,8 +315,7 @@ sources:
     type: html
     category: [simulation, lvc]
     language: en
-    enabled: true
-    notes: The simulation industry's main trade magazine. HTML landing - look for new-article links.
+    enabled: false
 
   - id: iitsec
     name: I/ITSEC - Interservice/Industry Training, Simulation and Education Conference
@@ -318,8 +323,7 @@ sources:
     type: html
     category: [simulation, lvc]
     language: en
-    enabled: true
-    notes: Annual conference; news page surfaces papers and award announcements throughout the year.
+    enabled: false
 
   - id: ausa
     name: Association of the United States Army (AUSA)
@@ -327,10 +331,7 @@ sources:
     type: html
     category: [doctrine, leadership, general_military]
     language: en
-    enabled: true
-    notes: AUSA news, papers, and ILW (Institute of Land Warfare) publications.
-
-  # -- Learning / training industry (civil) ----------------------------------
+    enabled: false
 
   - id: training_industry
     name: Training Industry
@@ -338,8 +339,7 @@ sources:
     type: rss
     category: [learning, leadership, analytics]
     language: en
-    enabled: true
-    notes: Civil L&D industry. Useful for spotting adult-learning practice migrating into the force.
+    enabled: false
 
   - id: elearning_industry
     name: eLearning Industry
@@ -347,8 +347,7 @@ sources:
     type: rss
     category: [learning, analytics]
     language: en
-    enabled: true
-    notes: Civil eLearning news. Filter aggressively - low signal-to-noise.
+    enabled: false
 
   - id: chief_learning_officer
     name: Chief Learning Officer Magazine
@@ -356,10 +355,7 @@ sources:
     type: rss
     category: [learning, leadership, analytics]
     language: en
-    enabled: true
-    notes: Enterprise L&D perspective. Strategy-of-learning content occasionally maps to PME debates.
-
-  # -- Disabled by default (examples for future activation) ------------------
+    enabled: false
 
   - id: janes_open
     name: Janes - open content
@@ -368,4 +364,4 @@ sources:
     category: [general_military, infrastructure]
     language: en
     enabled: false
-    notes: Most Janes content is paywalled. Keep disabled until/unless an open-content endpoint is identified.
+    notes: Most Janes content is paywalled.

@@ -252,7 +252,14 @@ def main() -> int:
     )
 
     # --- the loop -----------------------------------------------------------
-    client = anthropic.Anthropic(api_key=api_key)
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+    except Exception as exc:  # noqa: BLE001
+        logger.exception(
+            "Failed to initialise Anthropic client: %s: %s",
+            type(exc).__name__, exc,
+        )
+        return 4
 
     analysed: list[dict] = []
     api_errors = 0
@@ -261,18 +268,37 @@ def main() -> int:
     drop_low_score = 0
 
     for i, art in enumerate(articles, 1):
-        article_id = art.get("id", "?")
-        title = art.get("title", "") or ""
-        summary = (art.get("summary") or "")[:MAX_SUMMARY_CHARS]
+        # Outer try/except captures ANY error per article (including TypeError,
+        # ValueError, Jinja errors) and logs the full traceback to the file
+        # so failures don't vanish into stdout-only tracebacks.
+        try:
+            if not isinstance(art, dict):
+                logger.error(
+                    "[%d/%d] skipping non-dict article record: type=%s value=%r",
+                    i, len(articles), type(art).__name__, str(art)[:120],
+                )
+                continue
 
-        prompt = per_article_tpl.render(
-            article_title=title,
-            article_source=art.get("source_name", ""),
-            article_url=art.get("url", ""),
-            article_date=art.get("published_date", ""),
-            article_summary=summary,
-            branches_yaml=branches_yaml_text,
-        )
+            article_id = art.get("id", "?")
+            title = art.get("title", "") or ""
+            summary = (art.get("summary") or "")[:MAX_SUMMARY_CHARS]
+
+            prompt = per_article_tpl.render(
+                article_title=title,
+                article_source=art.get("source_name", "") or "",
+                article_url=art.get("url", "") or "",
+                article_date=art.get("published_date", "") or "",
+                article_summary=summary,
+                branches_yaml=branches_yaml_text,
+            )
+        except Exception as exc:  # noqa: BLE001
+            api_errors += 1
+            logger.exception(
+                "[%d/%d] %s: pre-API error (%s): %s",
+                i, len(articles), art.get("id", "?") if isinstance(art, dict) else "?",
+                type(exc).__name__, exc,
+            )
+            continue
 
         # --- call API ------------------------------------------------------
         try:
@@ -281,8 +307,9 @@ def main() -> int:
             )
         except Exception as exc:  # noqa: BLE001
             api_errors += 1
-            logger.error(
-                "[%d/%d] %s: API failed: %s", i, len(articles), article_id, exc,
+            logger.exception(
+                "[%d/%d] %s: API failed (%s): %s",
+                i, len(articles), article_id, type(exc).__name__, exc,
             )
             art["analysis"] = {"parse_error": True, "error": f"api: {exc}"}
             analysed.append(art)
@@ -291,17 +318,18 @@ def main() -> int:
         # --- parse JSON ----------------------------------------------------
         try:
             analysis = parse_analysis_json(text)
-        except json.JSONDecodeError as exc:
+        except (json.JSONDecodeError, TypeError) as exc:
             parse_errors += 1
             logger.error(
-                "[%d/%d] %s: JSON parse failed: %s",
-                i, len(articles), article_id, exc,
+                "[%d/%d] %s: JSON parse failed (%s): %s",
+                i, len(articles), article_id, type(exc).__name__, exc,
             )
-            logger.error("  raw response (first 500 chars): %s", text[:500])
+            logger.error("  raw response (first 500 chars): %s",
+                         (text or "")[:500])
             art["analysis"] = {
                 "parse_error": True,
                 "error": f"parse: {exc}",
-                "raw_excerpt": text[:1000],
+                "raw_excerpt": (text or "")[:1000],
             }
             analysed.append(art)
             continue
@@ -309,19 +337,40 @@ def main() -> int:
         art["analysis"] = analysis
 
         # --- log per-article decision -------------------------------------
-        relevant = bool(analysis.get("relevant", False))
-        score = float(analysis.get("relevance_score", 0) or 0)
-        conf = analysis.get("confidence", "low")
-        top_branch_id = None
-        if analysis.get("branch_relevance"):
-            try:
-                top = max(
-                    analysis["branch_relevance"],
-                    key=lambda b: float(b.get("score", 0) or 0),
+        try:
+            if not isinstance(analysis, dict):
+                raise TypeError(
+                    f"expected analysis JSON object, got {type(analysis).__name__}"
                 )
-                top_branch_id = top.get("branch_id")
-            except (ValueError, TypeError):
-                top_branch_id = None
+            relevant = bool(analysis.get("relevant", False))
+            try:
+                score = float(analysis.get("relevance_score", 0) or 0)
+            except (TypeError, ValueError):
+                score = 0.0
+            conf = analysis.get("confidence", "low")
+            top_branch_id = None
+            if analysis.get("branch_relevance"):
+                try:
+                    top = max(
+                        analysis["branch_relevance"],
+                        key=lambda b: float(b.get("score", 0) or 0),
+                    )
+                    top_branch_id = top.get("branch_id")
+                except (ValueError, TypeError, AttributeError):
+                    top_branch_id = None
+        except Exception as exc:  # noqa: BLE001
+            parse_errors += 1
+            logger.exception(
+                "[%d/%d] %s: post-parse error (%s): %s",
+                i, len(articles), article_id, type(exc).__name__, exc,
+            )
+            art["analysis"] = {
+                "parse_error": True,
+                "error": f"post-parse: {exc}",
+                "raw_excerpt": (text or "")[:500],
+            }
+            analysed.append(art)
+            continue
 
         logger.info(
             "[%d/%d] %s  rel=%s score=%.2f branch=%s conf=%s  %s",
