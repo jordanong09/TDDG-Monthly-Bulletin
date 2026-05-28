@@ -4,46 +4,54 @@
       "severity": "low",
       "category": "stylistic",
       "section": "bluf.summary",
-      "where": "The pattern across all four is the same",
-      "explanation": "Mildly editorial framing for a BLUF that otherwise stays factual. The 'same pattern' framing leans on the cross-cutting theme; a branch chief reading BLUF in 90 seconds should be able to evaluate the claim quickly.",
-      "suggested_fix": "Consider replacing with: 'Three of the four describe the same pattern: units and SOF moving faster than TDDG's institutional cycle.' Direct, no editorial."
+      "where": "Nine developments across nine outlets",
+      "explanation": "Slight imprecision - five outlets contribute the nine developments (War on the Rocks, Defense One, NATO ACT, RAND, CSIS, Lieber, Breaking Defense). Easy fix.",
+      "suggested_fix": "Change to 'Nine developments across the focused-source list' or 'Nine developments from seven outlets'."
     },
     {
-      "severity": "medium",
+      "severity": "low",
       "category": "structural",
       "section": "source_references",
-      "where": "defone-ngc2-ivysting-may2026 dated 2026-02-06",
-      "explanation": "One of the four cited articles is dated February 2026, not May 2026. The article previews the May Ivy Mass red-team event but the source itself predates the bulletin month. Acceptable because the May event is the subject, but the date is honest and visible.",
-      "suggested_fix": "If a Defense One follow-up on Ivy Mass appears in late May or early June, swap the citation. Until then, leave it with the date as published - do not paper over the publication date."
+      "where": "natoact-audacious-ai-2026 dated 2026-01; csis-brainofarmy-2026 and lieber-machinespeed-2026 dated 2026 without month",
+      "explanation": "Three citations are dated to month-only or year-only because the underlying pages do not expose a precise publication date in the metadata I could see.",
+      "suggested_fix": "On promotion, a reviewer should verify the dates directly from each source page and tighten where possible."
     },
     {
       "severity": "low",
       "category": "filler",
-      "section": "branch_sections.branch_id=4.items",
-      "where": "Single item from a single article",
-      "explanation": "Branch 4 (Learning Science) has only one item sourced from one article. The section is honest but thin. A branch chief might reasonably ask why this isn't combined into the cross-cutting theme.",
-      "suggested_fix": "Keep the Branch 4 section as is; the implication is specific enough (measurable competencies, BCT pilot, validation guard-rails) to justify standing alone. Note the thinness in the BLUF if it persists next month."
+      "section": "branch_sections.branch_id=4.items[2]",
+      "where": "AI-in-design implications for trainer skill set",
+      "explanation": "The third Branch 4 item is more speculative than the first two; it asks a question rather than naming a deliverable.",
+      "suggested_fix": "Either rewrite as a deliverable (e.g. 'Trainer competency model for AI-designed scenarios') or move into Cross-Branch Questions."
     },
     {
-      "severity": "low",
+      "severity": "medium",
+      "category": "unsupported",
+      "section": "key_developments[2].so_what (CSIS PME-as-data-substrate)",
+      "where": "Treating PME as a data-generating activity",
+      "explanation": "The CSIS proposal is for US Army TRADOC; transferring it to HQ TRADOC requires a judgement about whether the Army's PME data pipeline is similar enough. The implication for OCS and GKS CSC is plausible but not yet supported by HQ TRADOC policy or precedent in the cited corpus.",
+      "suggested_fix": "Either soften the language in the branch sections (frame as 'consider' rather than 'should') or have the human reviewer confirm whether HQ TRADOC has begun similar work."
+    },
+    {
+      "severity": "medium",
       "category": "structural",
-      "section": "cross_cutting_themes",
-      "where": "Single theme supported by exactly 3 articles",
-      "explanation": "The cross-cutting theme meets the >=3-article minimum exactly. The framing is defensible but a more conservative bulletin might require >=4 articles for a theme when the corpus is small (4 articles total).",
-      "suggested_fix": "Acceptable for this month given source diversity. If the focused-source pilot continues at 4-5 articles per month, consider raising the theme threshold to >=4 in monthly_synthesis.md."
+      "section": "key_developments",
+      "where": "Seven entries this month vs the master prompt's 3-7 cap",
+      "explanation": "The expanded corpus pushed key developments to the upper bound. Three branch sections (1, 3, 6) carry additional supporting items not promoted to key developments. The bulletin is at the edge of legibility for a senior leader skimming.",
+      "suggested_fix": "If next month produces another 9-article corpus, consider raising the relevance threshold for key developments so only 4-5 are promoted and the rest stay in branch sections."
     },
     {
       "severity": "low",
       "category": "stylistic",
-      "section": "key_developments[3].so_what",
-      "where": "the most actionable PME prescription published this month",
-      "explanation": "Mildly superlative framing. 'Most actionable' is a judgement call without explicit comparison.",
-      "suggested_fix": "Replace 'most actionable' with 'a concrete' - the article speaks for itself without the superlative."
+      "section": "branch_relevance_dashboard.branch_id=6.this_month",
+      "where": "Seven developments touch Doctrine Development",
+      "explanation": "Listing seven items by colon in the dashboard summary reads dense for a leader scanning the dashboard.",
+      "suggested_fix": "Consider summarising as 'Doctrine Development is the busiest branch this month, with seven open notes spanning MUM-T, concurrent build-and-train, AI-in-design, law-of-war training, PME data, AI competitions framework, and range authority.'"
     }
   ],
   "summary": {
-    "issue_count_by_severity": {"low": 4, "medium": 1, "high": 0},
-    "issue_count_by_category": {"hype": 0, "marketing": 0, "unsupported": 0, "misassignment": 0, "filler": 1, "stylistic": 2, "structural": 2}
+    "issue_count_by_severity": {"low": 4, "medium": 2, "high": 0},
+    "issue_count_by_category": {"hype": 0, "marketing": 0, "unsupported": 1, "misassignment": 0, "filler": 1, "stylistic": 2, "structural": 2}
   },
   "ready_for_review": true
 }
