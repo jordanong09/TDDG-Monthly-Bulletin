@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TDDG Training Futures Bulletin — 2026-05</title>
+<style>
+/* ---- typography ----------------------------------------------------- */
+:root {
+  --c-ink: #0f1115;
+  --c-body: #1c1f24;
+  --c-muted: #525860;
+  --c-line: #c8ccd2;
+  --c-line-soft: #e5e7eb;
+  --c-accent: #4a4f57;
+  --c-bg: #fbfaf6;
+  --c-card: #ffffff;
+  --c-watermark: rgba(178, 34, 52, 0.07);
+  --c-warning: #b22234;
+  --c-warning-bg: #fff5f6;
+  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--c-bg);
+  color: var(--c-body);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4, h5, .sans {
+  font-family: var(--sans);
+  color: var(--c-ink);
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+
+a { color: var(--c-ink); text-underline-offset: 2px; }
+a:hover { color: var(--c-warning); }
+
+/* ---- classification header / footer (draft) ------------------------- */
+.classification {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  background: var(--c-warning);
+  color: #fff;
+  text-transform: uppercase;
+}
+.classification.bottom { border-top: 0; }
+
+/* ---- watermark (draft only) ----------------------------------------- */
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 24px 80px;
+}
+
+/* ---- masthead -------------------------------------------------------- */
+.masthead {
+  border-bottom: 2px solid var(--c-ink);
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+}
+.masthead h1 {
+  font-size: 28px;
+  margin: 8px 0 4px;
+  font-weight: 700;
+}
+.masthead .meta {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--c-muted);
+}
+
+/* ---- section blocks -------------------------------------------------- */
+section { margin: 36px 0; }
+section > h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--c-line);
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+/* ---- BLUF ------------------------------------------------------------ */
+.bluf {
+  background: var(--c-card);
+  border: 1px solid var(--c-line-soft);
+  border-left: 4px solid var(--c-ink);
+  padding: 18px 22px;
+  margin-bottom: 36px;
+}
+.bluf .headline {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  line-height: 1.3;
+  color: var(--c-ink);
+}
+.bluf .summary { margin: 0; }
+
+/* ---- branch relevance dashboard ------------------------------------- */
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.dashboard .row {
+  display: grid;
+  grid-template-columns: 28px 1fr 70px;
+  gap: 10px;
+  align-items: baseline;
+  padding: 8px 10px;
+  background: var(--c-card);
+  border: 1px solid var(--c-line-soft);
+}
+.dashboard .row .id {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--c-muted);
+}
+.dashboard .row .body { font-size: 15px; }
+.dashboard .row .body .name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 14px;
+  margin-right: 6px;
+}
+.dashboard .row .intensity {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: right;
+  color: var(--c-muted);
+}
+.dashboard .row .intensity[data-level="high"]   { color: var(--c-warning); font-weight: 700; }
+.dashboard .row .intensity[data-level="medium"] { color: var(--c-ink); font-weight: 700; }
+
+/* ---- key developments ----------------------------------------------- */
+.key-dev {
+  border-top: 1px solid var(--c-line-soft);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+.key-dev:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+.key-dev h3 {
+  font-size: 17px;
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+.key-dev .what  { margin: 4px 0; }
+.key-dev .sowhat {
+  margin: 6px 0 0;
+  font-style: italic;
+  color: var(--c-body);
+}
+.key-dev .sowhat::before {
+  content: "So what — ";
+  font-style: normal;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--c-warning);
+  margin-right: 4px;
+}
+.tags {
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--c-muted);
+}
+.tag-branch {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 1px 6px;
+  border: 1px solid var(--c-line);
+  margin-right: 4px;
+  color: var(--c-accent);
+}
+
+/* ---- per-branch sections -------------------------------------------- */
+.branch-section { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--c-line-soft); }
+.branch-section:first-child { border-top: none; padding-top: 0; }
+.branch-section h3 {
+  font-size: 18px;
+  margin: 0 0 4px;
+}
+.branch-section h3 .num {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--c-muted);
+  font-weight: 400;
+  margin-right: 6px;
+}
+.branch-section .summary { margin: 8px 0 12px; }
+.branch-section ul.items { margin: 0; padding-left: 1.1em; }
+.branch-section ul.items li { margin-bottom: 8px; }
+.branch-section ul.items .item-title { font-family: var(--sans); font-weight: 700; }
+.branch-section ul.items .item-impl { display: block; margin-top: 2px; }
+
+/* ---- cross-cutting themes ------------------------------------------- */
+.theme {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--c-line-soft);
+}
+.theme:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+.theme h3 { font-size: 16px; margin: 0 0 6px; }
+
+/* ---- watch areas ----------------------------------------------------- */
+.watch {
+  background: var(--c-card);
+  border: 1px solid var(--c-line-soft);
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+.watch .signal {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0;
+}
+.watch .why { margin: 6px 0; }
+.watch ul.indicators {
+  font-family: var(--sans);
+  font-size: 13px;
+  margin: 6px 0 0;
+  padding-left: 1.1em;
+  color: var(--c-accent);
+}
+
+/* ---- source references ---------------------------------------------- */
+.sources { font-size: 14px; }
+.sources ol { padding-left: 2em; }
+.sources li { margin-bottom: 6px; }
+.sources .src-meta {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--c-muted);
+  margin-left: 4px;
+}
+
+/* ---- issues panel (sanity check, draft only) ------------------------ */
+.issues {
+  background: var(--c-warning-bg);
+  border-left: 4px solid var(--c-warning);
+  padding: 14px 18px;
+  margin: 28px 0;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.issues h2 {
+  margin-top: 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-warning);
+}
+.issues table { border-collapse: collapse; width: 100%; margin-top: 6px; }
+.issues th, .issues td {
+  text-align: left;
+  vertical-align: top;
+  padding: 4px 8px;
+  border-bottom: 1px solid #f0d6d8;
+  font-size: 12.5px;
+}
+.issues th { font-weight: 700; }
+.issues .sev-high { color: var(--c-warning); font-weight: 700; }
+.issues .empty { font-style: italic; color: var(--c-muted); }
+
+/* ---- responsive ----------------------------------------------------- */
+@media (max-width: 520px) {
+  html, body { font-size: 16px; }
+  main { padding: 18px 16px 60px; }
+  .masthead h1 { font-size: 22px; }
+  body::before { font-size: 26vw; }
+}
+
+/* ---- print ---------------------------------------------------------- */
+@media print {
+  :root { --c-bg: #fff; --c-card: #fff; }
+  body { font-size: 11pt; line-height: 1.4; }
+  body::before { color: rgba(178,34,52,0.06); font-size: 100pt; }
+  .classification { background: #000; color: #fff; }
+  .issues { background: #fff; border-color: #000; }
+  a { color: var(--c-ink); text-decoration: none; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; }
+  section { page-break-inside: avoid; }
+  .branch-section, .key-dev, .theme, .watch { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="classification top" style="background:#0f1115">UNCLASSIFIED // FOR OFFICIAL USE</div>
+
+<main>
+
+  <header class="masthead">
+    <div class="meta">HQ TRADOC · Training Doctrine Development Group</div>
+    <h1>Training Futures Bulletin — 2026-05</h1>
+    <div class="meta">
+Published 2026-05-28 08:17 UTC    </div>
+  </header>
+
+  <section>
+    <h2>Bottom Line Up Front</h2>
+    <div class="bluf">
+      <p class="headline">The conventional force is one institutional cycle behind unit-led drone integration and SOF-led AI adoption. Two May 2026 exercises (Project Flytrap 5.0, Ivy Mass) are the test of whether TDDG can close that gap.</p>
+      <p class="summary">Four developments in May 2026 frame this bulletin. War on the Rocks names Army Aviation&#39;s failed decade of manned-unmanned teaming as a PME problem, not a procurement one. Project Flytrap 5.0 at Pabradė shows 2nd Cavalry Regiment generating drone-warfare TTPs faster than TRADOC doctrine can absorb them. SOF Week revealed special operators are already using generative AI heavily for staff work while conventional formations have neither tools nor training. The Ivy Mass red-team event in May tests whether the 4th Infantry Division&#39;s next-gen command-and-control prototype can survive contact at division scale - a result that cascades into every CTC rotation, simulator, and training management system. The pattern across all four is the same: units and SOF are moving faster than TDDG&#39;s institutional cycle. Closing that gap is the work of the next quarter, not the next year.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Branch Relevance Dashboard</h2>
+    <div class="dashboard">
+      <div class="row">
+        <div class="id">B1</div>
+        <div class="body">
+          <span class="name">Doctrine &amp; Concepts</span>
+          <span class="oneline">Continuous Transformation acquisition model and tech-absorption failure modes are doctrinal questions, not procurement ones.</span>
+        </div>
+        <div class="intensity" data-level="low">
+          low (2)
+        </div>
+      </div>
+      <div class="row">
+        <div class="id">B2</div>
+        <div class="body">
+          <span class="name">Simulation &amp; Synthetic Training</span>
+          <span class="oneline">AI-enabled operating systems entered live training at squadron level in May; synthetic counter-UAS scenarios lag the live ones.</span>
+        </div>
+        <div class="intensity" data-level="low">
+          low (2)
+        </div>
+      </div>
+      <div class="row">
+        <div class="id">B3</div>
+        <div class="body">
+          <span class="name">LVC Integration</span>
+          <span class="oneline">Project Flytrap 5.0 and Ivy Mass are the two May events that should shape next FY CTC architecture.</span>
+        </div>
+        <div class="intensity" data-level="medium">
+          medium (3)
+        </div>
+      </div>
+      <div class="row">
+        <div class="id">B4</div>
+        <div class="body">
+          <span class="name">Learning Science</span>
+          <span class="oneline">Generative AI for staff work needs an adult-learning treatment before conventional adoption outpaces governance.</span>
+        </div>
+        <div class="intensity" data-level="low">
+          low (1)
+        </div>
+      </div>
+      <div class="row">
+        <div class="id">B5</div>
+        <div class="body">
+          <span class="name">Leader Development</span>
+          <span class="oneline">Direct PME critique: the Captain&#39;s Career Course should add emerging-tech assessment as a graded competency in FY27.</span>
+        </div>
+        <div class="intensity" data-level="low">
+          low (1)
+        </div>
+      </div>
+      <div class="row">
+        <div class="id">B6</div>
+        <div class="body">
+          <span class="name">Training Analytics &amp; Infrastructure</span>
+          <span class="oneline">NGC2 division-scale validation in May reshapes the training infrastructure cascade; SOF generative-AI use foreshadows conventional needs.</span>
+        </div>
+        <div class="intensity" data-level="medium">
+          medium (3)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Key Developments</h2>
+    <article class="key-dev">
+      <h3>Project Flytrap 5.0 at Pabradė: unit-led drone-warfare TTPs at squadron scale</h3>
+      <p class="what">In May 2026, the 2nd Cavalry Regiment ran Project Flytrap 5.0 at Pabradė Training Area, Lithuania, integrating over 20 pieces of counter-UAS and friendly-UAS equipment at troop and squadron level with Strykers, unmanned ground vehicles, and AI-enabled operating systems. The exercise developed new TTPs for synchronising intelligence, fires, and maneuver under a multi-layered drone threat. Flytrap 6.0 is expected to scale further.</p>
+      <p class="sowhat">Drone-warfare integration has moved from contractor-led demonstrations to unit-led training. The TTPs being generated by 2nd Cavalry will perish without an active capture mechanism into TRADOC doctrine and CTC opposing-force playbooks. JMRC and JRTC should mirror the Flytrap architecture before they fall behind.</p>
+      <div class="tags">
+<span class="tag-branch">B2</span><span class="tag-branch">B3</span><span class="tag-branch">B1</span>        · refs: <code>defone-flytrap-may2026</code>      </div>
+    </article>
+    <article class="key-dev">
+      <h3>Ivy Mass red-team event tests NGC2 at division scale</h3>
+      <p class="what">The 4th Infantry Division&#39;s May 2026 Ivy Mass exercise puts the next-generation command-and-control (NGC2) prototype against an Army Training and Transformation Command red team for the first time at division level. The Continuous Transformation acquisition model has more than a dozen vendors including Anduril and Palantir building the system while soldiers test it in the field.</p>
+      <p class="sowhat">If NGC2 survives Ivy Mass, the training enterprise needs to reorient on a 90-day cadence, not annual cycles. Every CTC rotation, training management system, and simulator becomes downstream of decisions made at Fort Carson this month. The Continuous Transformation model only works if TDDG can close the feedback loop from soldier use into next-iteration training scenarios fast enough.</p>
+      <div class="tags">
+<span class="tag-branch">B3</span><span class="tag-branch">B6</span><span class="tag-branch">B1</span>        · refs: <code>defone-ngc2-ivysting-may2026</code>      </div>
+    </article>
+    <article class="key-dev">
+      <h3>SOCOM leaders disclose heavy generative-AI use; conventional force lags</h3>
+      <p class="what">At SOF Week 2026 in Tampa (May 19-22), SOCOM program executives stated that special operators already use generative AI &#39;heavily&#39; for resource allocation and force deployment, and are pursuing AI agents and voice command for tactical operations. The current target is smaller models running at the tactical edge under fog-computing architectures, sourced from smaller startups rather than incumbent vendors.</p>
+      <p class="sowhat">SOF is operating ahead of the conventional force on AI for staff work, not for tactical lethality. The gap is institutional: conventional battalion and brigade staffs have neither training nor governance. If TDDG waits for the binding constraint to be obvious, it will be 18 to 24 months behind the use case.</p>
+      <div class="tags">
+<span class="tag-branch">B4</span><span class="tag-branch">B6</span>        · refs: <code>defone-sof-ai-may2026</code>      </div>
+    </article>
+    <article class="key-dev">
+      <h3>Army Aviation&#39;s lost decade reframed as a PME problem</h3>
+      <p class="what">Jake Steckler, writing in War on the Rocks on 18 May 2026, argues Army Aviation&#39;s decade-long effort to integrate Apaches with Shadow drones (ended in 2025) failed not because of procurement but because of cultural inertia, talent-model mismatch between manned and unmanned crews, and an evaluation system that rewarded reporting success over identifying failure. He proposes the Captain&#39;s Career Course add critical assessment of emerging technologies as a graded competency.</p>
+      <p class="sowhat">This is the most actionable PME prescription published this month. The Captain&#39;s Career Course is a TRADOC institution; an FY27 pilot block on emerging-tech assessment is feasible inside one budget cycle. The proposal also extends to the Unmanned Advanced Lethality Course (three weeks today vs Ukraine&#39;s 30+ schools running multi-month programmes).</p>
+      <div class="tags">
+<span class="tag-branch">B1</span><span class="tag-branch">B5</span>        · refs: <code>wotr-armyaviation-may2026</code>      </div>
+    </article>
+  </section>
+
+  <section>
+    <h2>Branch Sections</h2>
+    <article class="branch-section">
+      <h3><span class="num">B1</span>Doctrine &amp; Concepts</h3>
+<p class="summary">Two May items frame doctrine work this month. The first is the Continuous Transformation acquisition model being validated at division scale through NGC2 - it inverts the traditional &#39;field then train&#39; sequence and TDDG should treat it as a doctrinal experiment as much as an acquisition one. The second is Army Aviation&#39;s case study in how an institution can spend a decade rejecting available evidence, which generalises to every branch absorbing emerging tech.</p>      <ul class="items">
+        <li>
+          <span class="item-title">Continuous Transformation tested at division scale</span>
+<span class="item-impl">Doctrine should explicitly accommodate concurrent building, training, and fielding. Current ADP 7-0 assumes sequential.</span>          <span class="tags">refs: <code>defone-ngc2-ivysting-may2026</code></span>
+        </li>
+        <li>
+          <span class="item-title">Army Aviation&#39;s failure modes as a doctrinal warning</span>
+<span class="item-impl">Update branch doctrine to require a recurring critical assessment of emerging-tech adoption cycles, with named owners and graded products.</span>          <span class="tags">refs: <code>wotr-armyaviation-may2026</code></span>
+        </li>
+      </ul>
+    </article>
+    <article class="branch-section">
+      <h3><span class="num">B2</span>Simulation &amp; Synthetic Training</h3>
+<p class="summary">Live training in May 2026 is using AI-enabled operating systems and counter-UAS sensor stacks that synthetic environments do not yet model with comparable fidelity. The simulation gap is widening on both sides: friendly UAS scenarios and adversary drone behaviours.</p>      <ul class="items">
+        <li>
+          <span class="item-title">Flytrap 5.0&#39;s mixed-stack drone scenario at squadron level</span>
+<span class="item-impl">Synthetic environments need drone TTPs sourced from 2nd Cavalry&#39;s live exercise, not from contractor demos.</span>          <span class="tags">refs: <code>defone-flytrap-may2026</code></span>
+        </li>
+        <li>
+          <span class="item-title">AI agents in tactical decision support (SOF case)</span>
+<span class="item-impl">Scenario-generation tools should include adversary AI-agent behaviours in plan-revise-execute loops.</span>          <span class="tags">refs: <code>defone-sof-ai-may2026</code></span>
+        </li>
+      </ul>
+    </article>
+    <article class="branch-section">
+      <h3><span class="num">B3</span>LVC Integration</h3>
+<p class="summary">May 2026 is the LVC branch&#39;s busiest month of the year so far. Flytrap 5.0 is a live exercise that any synthetic environment will struggle to match without deliberate capture; Ivy Mass tests NGC2 in DDIL conditions that are directly portable to LVC scenarios. Both will produce reusable patterns for CTCs and instrumented ranges if TDDG captures them quickly.</p>      <ul class="items">
+        <li>
+          <span class="item-title">Project Flytrap 5.0 squadron-level exercise architecture</span>
+<span class="item-impl">Make this the default CTC rotation pattern for Europe-bound units; instrument human decision points in the intel-fires-maneuver synthesis.</span>          <span class="tags">refs: <code>defone-flytrap-may2026</code></span>
+        </li>
+        <li>
+          <span class="item-title">Ivy Mass DDIL red-teaming of NGC2</span>
+<span class="item-impl">Adopt the DDIL methodology as a recurring chapter of CTC opposing-force playbooks.</span>          <span class="tags">refs: <code>defone-ngc2-ivysting-may2026</code></span>
+        </li>
+        <li>
+          <span class="item-title">Dedicated drone ranges with active EW</span>
+<span class="item-impl">Range modernisation roadmaps need a near-term option for high-tempo experimentation against realistic EW threats.</span>          <span class="tags">refs: <code>wotr-armyaviation-may2026</code></span>
+        </li>
+      </ul>
+    </article>
+    <article class="branch-section">
+      <h3><span class="num">B4</span>Learning Science</h3>
+<p class="summary">One May item drives the learning-science work: how should adult learners (battalion and brigade staffs) be trained on generative AI for staff workflows when SOF has already done the discovery? The opportunity is to skip the discovery phase, not to repeat it.</p>      <ul class="items">
+        <li>
+          <span class="item-title">Generative-AI for staff work: adult-learning design</span>
+<span class="item-impl">Define measurable competencies in resource allocation, force deployment planning, and intelligence summarisation; pilot at one BCT with explicit validation guard-rails.</span>          <span class="tags">refs: <code>defone-sof-ai-may2026</code></span>
+        </li>
+      </ul>
+    </article>
+    <article class="branch-section">
+      <h3><span class="num">B5</span>Leader Development</h3>
+<p class="summary">One specific PME prescription on the table this month: add an emerging-tech assessment block to the Captain&#39;s Career Course. The proposal is concrete enough to action in FY27.</p>      <ul class="items">
+        <li>
+          <span class="item-title">FY27 Captain&#39;s Career Course emerging-tech assessment block</span>
+<span class="item-impl">Pilot in the Aviation CCC first, with a graded written deliverable. Cross-branch comparison once it runs.</span>          <span class="tags">refs: <code>wotr-armyaviation-may2026</code></span>
+        </li>
+      </ul>
+    </article>
+    <article class="branch-section">
+      <h3><span class="num">B6</span>Training Analytics &amp; Infrastructure</h3>
+<p class="summary">May is heavy for infrastructure: NGC2&#39;s division-scale validation and SOF&#39;s fog-computing AI both reshape what training systems must consume and produce. Both push toward shorter update cadences and tighter coupling between operational systems and training infrastructure.</p>      <ul class="items">
+        <li>
+          <span class="item-title">Ivy Mass and Project Convergence Capstone 6 infrastructure cascade</span>
+<span class="item-impl">Send a TDDG observer team to both events with a written remit to capture infrastructure-relevant findings; brief at next cross-branch.</span>          <span class="tags">refs: <code>defone-ngc2-ivysting-may2026</code></span>
+        </li>
+        <li>
+          <span class="item-title">Fog-computing tactical-edge AI</span>
+<span class="item-impl">Training infrastructure should anticipate generative-AI models running locally on staff devices, not in the cloud; data flow standards will need to change accordingly.</span>          <span class="tags">refs: <code>defone-sof-ai-may2026</code></span>
+        </li>
+        <li>
+          <span class="item-title">Drone-operator talent-data infrastructure</span>
+<span class="item-impl">If drone-operator courses expand in length and selectivity, training-management data will need to track new competencies, not just course completion.</span>          <span class="tags">refs: <code>wotr-armyaviation-may2026</code></span>
+        </li>
+      </ul>
+    </article>
+  </section>
+
+  <section>
+    <h2>Cross-Cutting Themes</h2>
+    <article class="theme">
+      <h3>TDDG is one institutional cycle behind unit-led and SOF-led adoption of emerging tech</h3>
+      <p>Three of this month&#39;s four articles describe the same pattern from different angles: 2nd Cavalry Regiment producing drone-warfare TTPs at squadron level in Lithuania; SOF using generative AI heavily for staff work while conventional formations have neither training nor doctrine for it; and Army Aviation&#39;s decade-long inability to absorb a manned-unmanned teaming concept that worked in 2006. The common failure mode is institutional latency, not technological readiness. The remedy is not more procurement but faster capture of unit-level lessons into PME, CTC playbooks, and training infrastructure.</p>
+      <div class="tags">refs: <code>defone-flytrap-may2026</code>, <code>defone-sof-ai-may2026</code>, <code>wotr-armyaviation-may2026</code></div>
+    </article>
+  </section>
+
+  <section>
+    <h2>Watch Areas</h2>
+    <div class="watch">
+      <p class="signal">Outcome of Ivy Mass red-team event (May 2026, Fort Carson)</p>
+<p class="why">Determines whether NGC2 design choices survive contact at division scale, which in turn determines what training infrastructure must change.</p>      <ul class="indicators">
+<li>TRADOC publishes a written Ivy Mass after-action with named design implications</li><li>4th Infantry Division retains NGC2 as primary C2 for Project Convergence Capstone 6 without major architectural rework</li><li>Red-team report is releasable to training-system vendors within 60 days</li>      </ul>
+    </div>
+    <div class="watch">
+      <p class="signal">Project Flytrap 6.0 scope and architecture</p>
+<p class="why">The 5.0 to 6.0 scaling jump is the test of whether unit-led drone-warfare innovation can sustain a doubling per iteration. If it can, CTC architecture needs to keep pace.</p>      <ul class="indicators">
+<li>Flytrap 6.0 announced with unit-size or UAS-density at least 2x of 5.0</li><li>2nd Cavalry Regiment&#39;s TTPs make it into a CALL or CTC opposing-force product</li><li>JMRC or JRTC publishes a counter-UAS rotation pattern in FY27 planning</li>      </ul>
+    </div>
+    <div class="watch">
+      <p class="signal">Conventional force adoption rate of generative AI for staff work</p>
+<p class="why">Determines whether the SOF-to-conventional gap stays at 18-24 months or compounds further. The wider it grows, the more TDDG training programmes will land obsolete on arrival.</p>      <ul class="indicators">
+<li>Named pilot at a BCT during the next training cycle with measurable competencies</li><li>CGSC or ILE adds an applied generative-AI block tied to graded staff products</li><li>An Army-equivalent of the SOF acquisition pathway that favours smaller startups</li>      </ul>
+    </div>
+    <div class="watch">
+      <p class="signal">FY27 PME budget treatment of emerging-tech assessment</p>
+<p class="why">Indicates whether the Steckler proposal (CCC graded competency) has institutional traction or is purely a commentary-page idea.</p>      <ul class="indicators">
+<li>Any Captain&#39;s Career Course publishes an FY27 syllabus with an emerging-tech assessment block</li><li>Unmanned Advanced Lethality Course length or selectivity changes in FY27</li><li>Officer evaluation guidance updated to reward identification of failure</li>      </ul>
+    </div>
+  </section>
+
+  <section class="sources">
+    <h2>Source References</h2>
+    <ol>
+      <li>
+<a href="https://warontherocks.com/army-aviations-wasted-decade-lessons-for-the-next-generation-of-drone-integration/">Army Aviation&#39;s Wasted Decade: Lessons for the Next Generation of Drone Integration</a>        <span class="src-meta">— War on the Rocks, 2026-05-18 · <code>wotr-armyaviation-may2026</code></span>
+      </li>
+      <li>
+<a href="https://www.defenseone.com/defense-systems/2026/05/us-infantrys-drone-warfare-experiments-are-getting-bigger/413568/">US infantry&#39;s drone-warfare experiments are getting bigger</a>        <span class="src-meta">— Defense One, 2026-05-14 · <code>defone-flytrap-may2026</code></span>
+      </li>
+      <li>
+<a href="https://www.defenseone.com/technology/2026/05/smaller-easier-smarter-what-special-operations-forces-need-ai-now/413748/">Smaller, easier, smarter: what special operations forces need from AI, now</a>        <span class="src-meta">— Defense One, 2026-05-24 · <code>defone-sof-ai-may2026</code></span>
+      </li>
+      <li>
+<a href="https://www.defenseone.com/defense-systems/2026/02/army-moves-link-full-division-its-next-gen-c2-prototype/411259/">Army moves to link a full division with its next-gen C2 prototype (Ivy Mass red-team event scheduled for May 2026)</a>        <span class="src-meta">— Defense One, 2026-02-06 · <code>defone-ngc2-ivysting-may2026</code></span>
+      </li>
+    </ol>
+  </section>
+
+
+</main>
+
+<div class="classification bottom" style="background:#0f1115">UNCLASSIFIED // FOR OFFICIAL USE</div>
+
+</body>
+</html>
