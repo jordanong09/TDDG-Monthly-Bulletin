@@ -1,27 +1,37 @@
 # ============================================================================
 # TDDG Monthly Bulletin - Source Inventory
 # ----------------------------------------------------------------------------
-# Focused source list (May 2026 pilot configuration).
+# Active source list (10 sources, expanded May 2026).
 #
-# Each source has a primary use mapped to one or two branches. Categories
-# are deliberately narrow so the pre-filter's +0.15 category boost lines
-# up cleanly with the source's intended contribution.
+# Each source has a primary use mapped to one or two TDDG branches.
+# Categories are deliberately narrow so the pre-filter's +0.15 category
+# boost lines up cleanly with the source's intended contribution.
 #
-# Source            Primary use                                  Maps to TDDG branches
-# ----------------  -------------------------------------------  ---------------------
-# war_on_the_rocks  Doctrine / leadership / strategic adaptation  6 (Doctrine Dev), 5 (Leadership Dev)
-# defense_one       AI / analytics / innovation                   3 (Training Analytics), 1 (Cap Dev Sim)
-# rusi              Operational lessons / transformation          6 (Doctrine Dev), 4 (Learning Systems)
-# army_technology   Infrastructure / LVC / systems                2 (Cap Dev Land/Infra), 1 (Cap Dev Sim)
-# modern_war_inst.  Leadership / PME / tactical learning          5 (Leadership Dev), 4 (Learning Systems)
+# Source              Primary use                                     Branches
+# ------------------  ---------------------------------------------   -----------
+# war_on_the_rocks    Doctrine / leadership / strategic adaptation    6, 5
+# defense_one         AI / analytics / innovation                     3, 1
+# rusi                Operational lessons / transformation            6, 4
+# army_technology     Infrastructure / LVC / systems                  2, 1
+# modern_war_inst.    Leadership / PME / tactical learning            5, 4, 1
+# breaking_defense    Defence trade press; training & sim coverage    1, 2
+# nato_act            NATO transformation, doctrine, exercises        1, 3, 6
+# rand_arroyo         Army-focused research (RAND Arroyo Center)      3, 6
+# csis_defense        Strategy, security policy, force structure      5, 6
+# lieber_institute    Law of armed conflict; doctrine and ethics      5, 6
 #
-# To re-enable a source from the disabled list, change its enabled: false
-# to enabled: true. The script will pick it up on the next run.
+# Branch reference:
+#   1 = Cap Dev (Simulation)        4 = Learning Systems
+#   2 = Cap Dev (Land/Infra)        5 = Leadership Development
+#   3 = Training Analytics          6 = Doctrine Development
+#
+# Other sources remain in the file below with enabled: false. Flip to true
+# to re-enable.
 # ============================================================================
 
 sources:
 
-  # ===== FOCUSED SOURCES (active) ============================================
+  # ===== ACTIVE SOURCES (10) =================================================
 
   - id: war_on_the_rocks
     name: War on the Rocks
@@ -31,12 +41,10 @@ sources:
     language: en
     enabled: true
     notes: |
-      Doctrine, leadership, and strategic adaptation. Primary mapping to
-      Branch 6 (Doctrine Development) and Branch 5 (Leadership Development).
-      Articles often surface from serving and recently-retired officers
-      writing about training reform, PME, and doctrinal change. Filter
-      aggressively at relevance step - the feed covers more than
-      training-futures topics.
+      Primary mapping to Branch 6 (Doctrine Development) and Branch 5
+      (Leadership Development). Practitioner commentary on training reform,
+      PME, and doctrinal change. Filter aggressively - the feed covers more
+      than training-futures topics.
 
   - id: defense_one
     name: Defense One
@@ -46,11 +54,10 @@ sources:
     language: en
     enabled: true
     notes: |
-      AI, analytics, and innovation in defence. Primary mapping to Branch 3
-      (Training Analytics) and Branch 1 (Cap Dev Sim). Most relevant items:
-      AI for training and decision support, command and control modernisation,
-      autonomous systems. Subset feeds at /rss/defense-systems/ and
-      /rss/technology/ if all/ is too noisy.
+      Primary mapping to Branch 3 (Training Analytics) and Branch 1
+      (Cap Dev Sim). AI for training and decision support, command and
+      control modernisation, autonomous systems. Subset feeds at
+      /rss/defense-systems/ and /rss/technology/ if all/ is too noisy.
 
   - id: rusi
     name: RUSI - Royal United Services Institute
@@ -60,22 +67,22 @@ sources:
     language: en
     enabled: true
     notes: |
-      Operational lessons and military transformation. Primary mapping to
-      Branch 6 (Doctrine Development) and Branch 4 (Learning Systems).
-      Strong work on training pedagogy and individualised training pathways.
+      Primary mapping to Branch 6 (Doctrine Development) and Branch 4
+      (Learning Systems). Operational lessons and military transformation
+      with strong work on training pedagogy and instructor development.
 
   - id: army_technology
     name: Army Technology
     url: https://www.army-technology.com/feed/
     type: rss
-    category: [infrastructure, lvc]
+    category: [infrastructure, simulation]
     language: en
     enabled: true
     notes: |
-      Trade publication covering training infrastructure, LVC systems,
-      synthetic environments, simulators, and contractor solutions.
       Primary mapping to Branch 2 (Cap Dev Land/Infra) and Branch 1
-      (Cap Dev Sim). Treat vendor coverage as marketing claims unless
+      (Cap Dev Sim). Trade publication covering training infrastructure,
+      LVC systems, synthetic environments, simulators, contractor
+      solutions. Treat vendor coverage as marketing claims unless
       independently corroborated.
 
   - id: modern_war_institute
@@ -86,11 +93,76 @@ sources:
     language: en
     enabled: true
     notes: |
-      Leadership, PME, and tactical learning. Primary mapping to Branch 5
-      (Leadership Development) and Branch 4 (Learning Systems). Officer-led
-      commentary on modern warfare; strong on leader development, tactical
-      innovation, and the relationship between PME and operational
-      effectiveness.
+      Primary mapping to Branch 5 (Leadership Development) and Branch 4
+      (Learning Systems). Officer-led commentary on modern warfare, leader
+      development, tactical innovation.
+
+  - id: breaking_defense
+    name: Breaking Defense
+    url: https://breakingdefense.com/feed/
+    type: rss
+    category: [simulation, infrastructure]
+    language: en
+    enabled: true
+    notes: |
+      Primary mapping to Branch 1 (Cap Dev Sim) and Branch 2 (Cap Dev
+      Land/Infra). Defence trade press. Useful for early signals on
+      training devices, range modernisation, programme milestones.
+      Filter aggressively - much of the feed is procurement noise.
+
+  - id: nato_act
+    name: NATO Allied Command Transformation
+    url: https://www.act.nato.int/articles/
+    type: html
+    category: [doctrine, simulation]
+    language: en
+    enabled: true
+    notes: |
+      Primary mapping to Branch 6 (Doctrine Development), Branch 1
+      (Cap Dev Sim), and Branch 3 (Training Analytics). NATO's
+      transformation HQ - training, exercises, future force concepts,
+      multi-domain operations doctrine. HTML scrape; needs a selector in
+      config/html_selectors.yaml before collect.py picks it up.
+
+  - id: rand_arroyo
+    name: RAND Arroyo Center
+    url: https://www.rand.org/ard/publications.html
+    type: html
+    category: [analytics, doctrine]
+    language: en
+    enabled: true
+    notes: |
+      Primary mapping to Branch 3 (Training Analytics) and Branch 6
+      (Doctrine Development). RAND's army-focused research arm. Reports
+      tend to be substantive and well-grounded. HTML scrape; needs a
+      selector in config/html_selectors.yaml.
+
+  - id: csis_defense
+    name: CSIS - International Security Program
+    url: https://www.csis.org/programs/international-security-program
+    type: html
+    category: [doctrine, leadership]
+    language: en
+    enabled: true
+    notes: |
+      Primary mapping to Branch 6 (Doctrine Development) and Branch 5
+      (Leadership Development). Strategy and security policy analysis;
+      strong on force structure and great-power competition framing.
+      HTML scrape; needs a selector in config/html_selectors.yaml.
+
+  - id: lieber_institute
+    name: Lieber Institute West Point (Articles of War)
+    url: https://lieber.westpoint.edu/feed/
+    type: rss
+    category: [doctrine, leadership]
+    language: en
+    enabled: true
+    notes: |
+      Primary mapping to Branch 6 (Doctrine Development) and Branch 5
+      (Leadership Development). Law of armed conflict, military ethics,
+      and doctrine analysis from West Point's Lieber Institute. Articles
+      of War is the main publication channel. RSS via WordPress; verify
+      feed URL on first run.
 
   # ===== DISABLED (kept for future re-enablement) ============================
   # Re-enable by flipping enabled: false -> enabled: true.
@@ -102,7 +174,7 @@ sources:
     category: [doctrine, simulation, general_military]
     language: en
     enabled: false
-    notes: TRADOC's futures blog. Too broad for current focused pilot; re-enable when scaling.
+    notes: TRADOC's futures blog. Too broad for current focused pilot.
 
   - id: army_university_press_review
     name: Army University Press - Military Review
@@ -111,7 +183,6 @@ sources:
     category: [doctrine, leadership]
     language: en
     enabled: false
-    notes: Premier US Army professional journal. Re-enable once HTML selectors are written.
 
   - id: nco_journal
     name: NCO Journal (Army University Press)
@@ -120,7 +191,6 @@ sources:
     category: [leadership, learning]
     language: en
     enabled: false
-    notes: NCO development perspectives. Re-enable once selectors written.
 
   - id: call_publications
     name: Center for Army Lessons Learned (CALL)
@@ -129,7 +199,6 @@ sources:
     category: [doctrine, learning, analytics]
     language: en
     enabled: false
-    notes: After-action reports as PDFs. Re-enable once a PDF-handling fetch path is built.
 
   - id: joint_force_quarterly
     name: Joint Force Quarterly (NDU Press)
@@ -138,7 +207,6 @@ sources:
     category: [doctrine, leadership]
     language: en
     enabled: false
-    notes: Joint-level professional journal. Quarterly cadence.
 
   - id: marine_corps_gazette
     name: Marine Corps Gazette
@@ -176,22 +244,6 @@ sources:
     name: Small Wars Journal
     url: https://smallwarsjournal.com/rss.xml
     type: rss
-    category: [doctrine, general_military]
-    language: en
-    enabled: false
-
-  - id: rand_arroyo
-    name: RAND Arroyo Center publications
-    url: https://www.rand.org/ard/publications.html
-    type: html
-    category: [doctrine, analytics, general_military]
-    language: en
-    enabled: false
-
-  - id: csis_defense
-    name: CSIS - International Security Program
-    url: https://www.csis.org/programs/international-security-program
-    type: html
     category: [doctrine, general_military]
     language: en
     enabled: false
@@ -268,27 +320,11 @@ sources:
     language: en
     enabled: false
 
-  - id: nato_act
-    name: NATO Allied Command Transformation
-    url: https://www.act.nato.int/articles/
-    type: html
-    category: [doctrine, lvc, simulation]
-    language: en
-    enabled: false
-
   - id: nato_sto
     name: NATO Science & Technology Organization (STO)
     url: https://www.sto.nato.int/Pages/news.aspx
     type: html
     category: [simulation, lvc, analytics]
-    language: en
-    enabled: false
-
-  - id: breaking_defense
-    name: Breaking Defense
-    url: https://breakingdefense.com/feed/
-    type: rss
-    category: [simulation, lvc, infrastructure, general_military]
     language: en
     enabled: false
 

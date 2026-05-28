@@ -348,6 +348,14 @@ section > h2 {
     </div>
   </header>
 
+  {# ---- How to read this bulletin ---------------------------------- #}
+  {% if bulletin.how_to_read %}
+  <section>
+    <h2>How to Read This Bulletin</h2>
+    <p style="font-style: italic; color: var(--c-accent);">{{ bulletin.how_to_read }}</p>
+  </section>
+  {% endif %}
+
   {# ---- BLUF -------------------------------------------------------- #}
   {% if bulletin.bluf %}
   <section>
@@ -363,17 +371,34 @@ section > h2 {
   </section>
   {% endif %}
 
+  {# ---- Why this matters to Army training -------------------------- #}
+  {% if bulletin.why_this_matters %}
+  <section>
+    <h2>Why This Matters to Army Training</h2>
+    <p>{{ bulletin.why_this_matters }}</p>
+  </section>
+  {% endif %}
+
   {# ---- branch relevance dashboard --------------------------------- #}
   {% if bulletin.branch_relevance_dashboard %}
   <section>
     <h2>Branch Relevance Dashboard</h2>
     <div class="dashboard">
       {% for row in bulletin.branch_relevance_dashboard %}
-      <div class="row">
+      <div class="row" style="grid-template-columns: 28px 1fr 90px;">
         <div class="id">B{{ row.branch_id }}</div>
         <div class="body">
-          <span class="name">{{ row.branch_name }}</span>
-          <span class="oneline">{{ row.one_line }}</span>
+          <div><span class="name">{{ row.branch_name }}</span></div>
+          {% if row.watches %}
+          <div style="font-family: var(--sans); font-size: 12px; color: var(--c-muted); margin: 2px 0 4px;">
+            <em>Watches:</em> {{ row.watches }}
+          </div>
+          {% endif %}
+          {% if row.this_month %}
+          <div style="font-size: 14px;">{{ row.this_month }}</div>
+          {% elif row.one_line %}
+          <div style="font-size: 14px;">{{ row.one_line }}</div>
+          {% endif %}
         </div>
         <div class="intensity" data-level="{{ row.intensity }}">
           {{ row.intensity }} ({{ row.article_count }})
@@ -384,16 +409,20 @@ section > h2 {
   </section>
   {% endif %}
 
-  {# ---- key developments ------------------------------------------- #}
+  {# ---- global developments with training implications ------------ #}
   {% if bulletin.key_developments %}
   <section>
-    <h2>Key Developments</h2>
+    <h2>Global Developments with Training Implications</h2>
     {% for kd in bulletin.key_developments %}
     <article class="key-dev">
       <h3>{{ kd.title }}</h3>
-      <p class="what">{{ kd.what }}</p>
+      <p class="what"><strong style="font-family: var(--sans); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-muted);">What happened —</strong> {{ kd.what }}</p>
       <p class="sowhat">{{ kd.so_what }}</p>
+      {% if kd.follow_up %}
+      <p style="margin: 6px 0 0;"><strong style="font-family: var(--sans); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-muted);">Suggested follow-up —</strong> {{ kd.follow_up }}</p>
+      {% endif %}
       <div class="tags">
+        <strong>Relevant branches:</strong>
         {% for bid in kd.branches or [] %}<span class="tag-branch">B{{ bid }}</span>{% endfor %}
         {% if kd.supporting_article_ids %}
         · refs: {% for aid in kd.supporting_article_ids %}<code>{{ aid }}</code>{% if not loop.last %}, {% endif %}{% endfor %}
@@ -404,10 +433,10 @@ section > h2 {
   </section>
   {% endif %}
 
-  {# ---- branch sections -------------------------------------------- #}
+  {# ---- branch-specific insights ----------------------------------- #}
   {% if bulletin.branch_sections %}
   <section>
-    <h2>Branch Sections</h2>
+    <h2>Branch-Specific Insights</h2>
     {% for sec in bulletin.branch_sections %}
     <article class="branch-section">
       <h3><span class="num">B{{ sec.branch_id }}</span>{{ sec.branch_name }}</h3>
@@ -446,11 +475,24 @@ section > h2 {
   </section>
   {% endif %}
 
+  {# ---- this month's cross-branch questions ------------------------ #}
+  {% if bulletin.cross_branch_questions %}
+  <section>
+    <h2>This Month's Cross-Branch Questions</h2>
+    {% for q in bulletin.cross_branch_questions %}
+    <div style="margin-bottom: 16px; padding: 12px 16px; background: var(--c-card); border: 1px solid var(--c-line-soft); border-left: 4px solid var(--c-accent);">
+      <p style="margin: 0 0 6px; font-family: var(--sans); font-weight: 700; font-size: 15px;">{{ q.question }}</p>
+      {% if q.context %}<p style="margin: 0; font-size: 14px; color: var(--c-accent);">{{ q.context }}</p>{% endif %}
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
   {# ---- watch areas ------------------------------------------------- #}
   {% if bulletin.watch_areas %}
   <section>
     <h2>Watch Areas</h2>
-    {% for w in bulletin.watch_areas %}
+{% for w in bulletin.watch_areas %}
     <div class="watch">
       <p class="signal">{{ w.signal }}</p>
       {% if w.why %}<p class="why">{{ w.why }}</p>{% endif %}
@@ -479,10 +521,10 @@ section > h2 {
   </section>
   {% endif %}
 
-  {# ---- sanity-check issues panel (draft only) -------------------- #}
+  {# ---- editorial review notes (draft only) -------------------- #}
   {% if is_draft and issues %}
   <aside class="issues">
-    <h2>Sanity-check findings ({{ (issues.issues or []) | length }})
+    <h2>Editorial Review Notes ({{ (issues.issues or []) | length }})
       {% if not issues.ready_for_review %} · NOT READY FOR REVIEW{% endif %}
     </h2>
     {% if issues.issues %}
@@ -503,7 +545,7 @@ section > h2 {
       </tbody>
     </table>
     {% else %}
-    <p class="empty">Sanity check reported no issues.</p>
+    <p class="empty">Editorial review reported no issues.</p>
     {% endif %}
   </aside>
   {% endif %}
