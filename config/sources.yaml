@@ -7,13 +7,13 @@
 # are deliberately narrow so the pre-filter's +0.15 category boost lines
 # up cleanly with the source's intended contribution.
 #
-# Source            Primary use                                  Maps to branches
-# ----------------  -------------------------------------------  ----------------
-# war_on_the_rocks  Doctrine / leadership / strategic adaptation  1, 5
-# defense_one       AI / analytics / innovation                   2, 6
-# rusi              Operational lessons / transformation          1, 4
-# army_technology   Infrastructure / LVC / systems                3, 6
-# modern_war_inst.  Leadership / PME / tactical learning          5, 4, 1
+# Source            Primary use                                  Maps to TDDG branches
+# ----------------  -------------------------------------------  ---------------------
+# war_on_the_rocks  Doctrine / leadership / strategic adaptation  6 (Doctrine Dev), 5 (Leadership Dev)
+# defense_one       AI / analytics / innovation                   3 (Training Analytics), 1 (Cap Dev Sim)
+# rusi              Operational lessons / transformation          6 (Doctrine Dev), 4 (Learning Systems)
+# army_technology   Infrastructure / LVC / systems                2 (Cap Dev Land/Infra), 1 (Cap Dev Sim)
+# modern_war_inst.  Leadership / PME / tactical learning          5 (Leadership Dev), 4 (Learning Systems)
 #
 # To re-enable a source from the disabled list, change its enabled: false
 # to enabled: true. The script will pick it up on the next run.
@@ -31,23 +31,26 @@ sources:
     language: en
     enabled: true
     notes: |
-      Doctrine, leadership, and strategic adaptation. Articles often surface
-      from serving and recently-retired officers writing about training
-      reform, PME, and doctrinal change. Filter aggressively at relevance
-      step - the feed covers more than training-futures topics.
+      Doctrine, leadership, and strategic adaptation. Primary mapping to
+      Branch 6 (Doctrine Development) and Branch 5 (Leadership Development).
+      Articles often surface from serving and recently-retired officers
+      writing about training reform, PME, and doctrinal change. Filter
+      aggressively at relevance step - the feed covers more than
+      training-futures topics.
 
   - id: defense_one
     name: Defense One
     url: https://www.defenseone.com/rss/all/
     type: rss
-    category: [simulation, analytics]
+    category: [analytics, simulation]
     language: en
     enabled: true
     notes: |
-      AI, analytics, and innovation in defence. Most relevant items: AI for
-      training and decision support, defence data, command and control
-      modernisation, autonomous systems. Subset feeds available at
-      /rss/defense-systems/ and /rss/technology/ if all/ is too noisy.
+      AI, analytics, and innovation in defence. Primary mapping to Branch 3
+      (Training Analytics) and Branch 1 (Cap Dev Sim). Most relevant items:
+      AI for training and decision support, command and control modernisation,
+      autonomous systems. Subset feeds at /rss/defense-systems/ and
+      /rss/technology/ if all/ is too noisy.
 
   - id: rusi
     name: RUSI - Royal United Services Institute
@@ -57,9 +60,9 @@ sources:
     language: en
     enabled: true
     notes: |
-      Operational lessons and military transformation, with strong work on
-      training pedagogy and individualised training pathways. UK perspective
-      but generalisable to TDDG concerns.
+      Operational lessons and military transformation. Primary mapping to
+      Branch 6 (Doctrine Development) and Branch 4 (Learning Systems).
+      Strong work on training pedagogy and individualised training pathways.
 
   - id: army_technology
     name: Army Technology
@@ -70,20 +73,24 @@ sources:
     enabled: true
     notes: |
       Trade publication covering training infrastructure, LVC systems,
-      synthetic environments, simulators, and contractor solutions. Treat
-      vendor coverage as marketing claims unless independently corroborated.
+      synthetic environments, simulators, and contractor solutions.
+      Primary mapping to Branch 2 (Cap Dev Land/Infra) and Branch 1
+      (Cap Dev Sim). Treat vendor coverage as marketing claims unless
+      independently corroborated.
 
   - id: modern_war_institute
     name: Modern War Institute at West Point
     url: https://mwi.westpoint.edu/feed/
     type: rss
-    category: [leadership, learning, doctrine]
+    category: [leadership, learning]
     language: en
     enabled: true
     notes: |
-      Leadership, PME, and tactical learning. Officer-led commentary on
-      modern warfare. Strong on leader development, tactical innovation,
-      and the relationship between PME and operational effectiveness.
+      Leadership, PME, and tactical learning. Primary mapping to Branch 5
+      (Leadership Development) and Branch 4 (Learning Systems). Officer-led
+      commentary on modern warfare; strong on leader development, tactical
+      innovation, and the relationship between PME and operational
+      effectiveness.
 
   # ===== DISABLED (kept for future re-enablement) ============================
   # Re-enable by flipping enabled: false -> enabled: true.

@@ -1,13 +1,9 @@
 # ============================================================================
-# TDDG Branches - structure used by the analyse + render stages
+# TDDG Branches - Singapore Armed Forces (SAF) Training Development & Doctrine Group
 # ----------------------------------------------------------------------------
-# Each branch maps incoming articles to the branch most likely to care about
-# them, and supplies the keyword vocabulary that the filter + analyse prompts
-# bias against.
-#
-# Keep keywords rich: include the expansive phrase ("synthetic training
-# environment") AND the acronym ("STE"). Mix US, UK, AU, and NATO terminology
-# where the concept exists in multiple traditions.
+# Six branches inside TDDG, HQ Training and Doctrine (Singapore Army / SAF).
+# Each branch's focus_areas, core_question, and keywords drive how the
+# pre-filter scores articles and how the LLM analyst frames implications.
 #
 # Branch IDs are stable and used as JSON keys downstream. Renaming `name`
 # is fine; renaming `id` will break stored data.
@@ -16,63 +12,24 @@
 branches:
 
   - id: 1
-    name: Doctrine & Concepts
-    primary_categories: [doctrine]
+    name: Cap Dev (Simulation)
+    primary_categories: [simulation, lvc]
     focus_areas:
-      - Future training doctrine
-      - Concept development and capstone concepts
-      - Doctrinal alignment with new warfighting concepts (MDO, JADC2, LSCO)
-      - Force design and training implications
-      - Doctrine writing process and rapid update cycles
+      - Live, virtual, and constructive (LVC) simulation integration for SAF Army
+      - Embedding AI inside simulation systems to improve learning fidelity
+      - Cross-learning across heterogeneous simulation systems (data, scenarios, scoring)
+      - Synthetic training environments, VR/AR/XR, serious games
+      - Simulator acquisition, design, and lifecycle
     core_question: >
-      How should our training doctrine evolve to prepare formations for
-      multi-domain, large-scale combat operations against peer adversaries?
-    keywords:
-      - doctrine
-      - training doctrine
-      - doctrinal update
-      - capstone concept
-      - concept of operations
-      - concept paper
-      - warfighting concept
-      - multi-domain operations
-      - MDO
-      - large-scale combat operations
-      - LSCO
-      - joint all-domain command and control
-      - JADC2
-      - future force
-      - force design
-      - FM 7-0
-      - ADP 7-0
-      - JCIDS
-      - joint warfighting concept
-      - training transformation
-      - training and education concept
-      - doctrine 2.0
-      - rapid doctrine
-      - agentic warfare
-      - agentic AI
-      - manned-unmanned teaming
-      - MUM-T
-      - continuous transformation
-
-  - id: 2
-    name: Simulation & Synthetic Training
-    primary_categories: [simulation]
-    focus_areas:
-      - Synthetic Training Environment (STE) and follow-on programs
-      - Constructive and virtual simulation
-      - VR, AR, XR for training
-      - Serious games and game-based learning
-      - Digital twin and synthetic terrain
-      - Training device acquisition
-    core_question: >
-      What synthetic and simulated training technologies offer the greatest
-      readiness uplift in the next 3-10 years, and how do we mature them?
+      How can SAF integrate live, virtual, and constructive simulation
+      systems, embed AI within them, and enable cross-learning between
+      systems so that simulation-based training accelerates force readiness?
     keywords:
       - simulation
       - simulator
+      - LVC
+      - live virtual constructive
+      - LVC integration
       - synthetic training environment
       - STE
       - synthetic training
@@ -81,101 +38,141 @@ branches:
       - augmented reality
       - AR
       - mixed reality
-      - extended reality
       - XR
       - immersive training
       - serious games
       - game-based learning
       - GBL
-      - gaming for training
-      - digital twin
+      - constructive simulation
+      - federated simulation
+      - HLA
+      - DIS
+      - TENA
+      - common synthetic environment
       - synthetic terrain
-      - OneSAF
-      - JLCCTC
-      - CCTT
-      - AVCATT
-      - training device
-      - I/ITSEC
-      - MS&T
-      - virtual world
-      - generative AI in simulation
+      - digital twin
+      - AI in simulation
       - AI-driven scenario
       - AI-enabled targeting
       - AI-enabled operating system
       - agentic AI
-      - drone simulator
-      - counter-UAS training
+      - cross-platform simulation
+      - I/ITSEC
+      - manned-unmanned teaming
+      - MUM-T
 
-  - id: 3
-    name: LVC Integration
-    primary_categories: [lvc]
+  - id: 2
+    name: Cap Dev (Land/Infrastructure)
+    primary_categories: [infrastructure, lvc]
     focus_areas:
-      - Live, virtual, constructive integration architectures
-      - Distributed mission training and networked exercises
-      - Combat training centres and range modernisation
-      - Standards (HLA, DIS, TENA) and interoperability
-      - Persistent synthetic environments at scale
+      - SAFTI City (instrumented urban training facility, operational from Oct 2024)
+      - Multi-Mission Range Complex (MMRC, MMRC 2 announced Feb 2026, operational by 2031)
+      - Live training range modernisation and instrumentation
+      - Training facility design (urban, MOUT, ranges, subterranean)
+      - Smart-sensor and Video Targetry System (VTS) instrumentation
+      - Physical infrastructure that supports manned-unmanned teaming training
     core_question: >
-      How do we knit live, virtual, and constructive training into a single
-      seamless training continuum that scales from squad to joint task force?
+      What live and physical training infrastructure does SAF need to
+      develop, modernise, and instrument so that ground training keeps
+      pace with the operational tasks soldiers must master?
     keywords:
-      - live virtual constructive
-      - LVC
-      - LVC integration
-      - distributed mission training
-      - DMT
-      - networked training
-      - joint training
-      - combat training centre
-      - combat training center
-      - CTC
-      - NTC
-      - JRTC
-      - JMRC
-      - integrated training environment
-      - ITE
-      - federated simulation
-      - high level architecture
-      - HLA
-      - distributed interactive simulation
-      - DIS
-      - TENA
-      - mission rehearsal
-      - exercise architecture
-      - common synthetic environment
+      - SAFTI City
+      - MMRC
+      - MMRC 2
+      - Multi-Mission Range Complex
+      - live firing range
+      - indoor live firing
+      - urban training facility
+      - MOUT
+      - training range
       - range modernisation
       - range modernization
-      - training range
-      - instrumentation
-      - interoperability
-      - persistent synthetic environment
-      - synthetic wrap
-      - next-gen C2
-      - NGC2
-      - Project Flytrap
-      - Ivy Sting
-      - Ivy Mass
-      - Project Convergence
+      - range infrastructure
+      - smart range
+      - instrumented range
+      - Video Targetry System
+      - VTS
+      - training facility
+      - subterranean training
+      - manned-unmanned teaming
+      - MUM-T
+      - drone range
+      - counter-UAS range
+      - Pasir Laba
+      - Bedok Camp
+      - SAFTI MI
+
+  - id: 3
+    name: Training Analytics
+    primary_categories: [analytics]
+    focus_areas:
+      - Applying AI and analytics to digitise training workflows
+      - Training administration automation
+      - Training safety analytics and risk surveillance
+      - Training outcomes measurement and feedback
+      - Data fabrics and learning record stores for training data
+      - Workflow tools for training staff (NSF, regulars, NSmen scheduling)
+    core_question: >
+      How can AI and analytics digitise and automate training workflows -
+      administration, safety, and outcomes - while improving the quality
+      of decisions training staffs make every day?
+    keywords:
+      - training analytics
+      - learning analytics
+      - training data
+      - training metrics
+      - training outcomes
+      - training effectiveness
+      - training administration
+      - training safety
+      - training risk
+      - xAPI
+      - experience API
+      - SCORM
+      - learning record store
+      - LRS
+      - training management
+      - TMS
+      - LMS
+      - workflow automation
+      - digitised workflow
+      - AI for training
+      - generative AI
+      - AI agents
+      - data fabric
+      - C2 data fabric
+      - readiness measurement
+      - evidence-based training
+      - after-action review
+      - AAR
+      - personalised feedback
 
   - id: 4
-    name: Learning Science
+    name: Learning Systems
     primary_categories: [learning]
     focus_areas:
-      - Adult learning theory applied to military training
-      - Cognitive science of skill acquisition and retention
+      - Learning frameworks for the SAF training community
+      - Trainer development (instructors, mentors, range staff)
+      - Soldier-centred learning systems
       - Instructional design and learning experience design
-      - Microlearning, mobile learning, blended models
-      - Competency- and mastery-based progression
-      - Transfer of training to performance
+      - Microlearning, mobile learning, blended learning models
+      - Competency-based progression
     core_question: >
-      How do advances in learning science and adult education change how
-      soldiers and leaders should be trained, assessed, and re-trained?
+      What systems and frameworks does SAF need to develop the trainers
+      and improve how soldiers and leaders learn across their service
+      lifecycle?
     keywords:
+      - learning system
+      - learning framework
+      - learning experience design
+      - LXD
+      - instructional design
+      - instructional system
+      - trainer development
+      - instructor pedagogy
       - adult learning
       - andragogy
-      - pedagogy
       - learning science
-      - learning engineering
       - cognitive load
       - deliberate practice
       - spaced repetition
@@ -183,49 +180,41 @@ branches:
       - microlearning
       - mobile learning
       - mLearning
-      - eLearning
       - blended learning
-      - flipped classroom
       - scenario-based learning
       - problem-based learning
       - competency-based training
-      - competency-based education
-      - CBT
       - mastery learning
-      - learner-centric
-      - learning experience design
-      - LXD
-      - instructional design
-      - metacognition
+      - learning engineering
       - transfer of training
       - retention
       - skill decay
       - data literacy
       - AI literacy
-      - graded competency
 
   - id: 5
-    name: Leader Development
+    name: Leadership Development
     primary_categories: [leadership]
     focus_areas:
-      - Officer and NCO professional development
-      - Professional military education (PME)
-      - Mission command and intent-based leadership
+      - Leadership and competency model for officers and warrant officers
+      - Commander development across echelons (platoon -> battalion -> formation)
+      - Command climate and mission command culture
       - Character, ethical reasoning, judgement under uncertainty
-      - Mentorship, coaching, broadening
-      - Talent management and career field design
+      - PME at SAFTI MI Officer Cadet School, Goh Keng Swee Command and Staff College, Army CSC
+      - Leader-as-trainer development
     core_question: >
-      What models of leader development best prepare officers and NCOs for
-      ambiguous, distributed operations against capable adversaries?
+      What competency model and leader-development pathway best prepares
+      SAF commanders for ambiguous, distributed operations and for the
+      job of training their own units?
     keywords:
+      - leadership model
+      - competency model
       - leader development
       - leadership development
-      - professional military education
-      - PME
-      - officer education
+      - commander development
       - officer development
+      - warrant officer
       - NCO development
-      - junior leader development
       - command climate
       - mission command
       - intent-based leadership
@@ -235,66 +224,61 @@ branches:
       - ethical reasoning
       - mentorship
       - coaching
-      - broadening assignment
+      - broadening
       - talent management
-      - career field design
-      - command and staff college
-      - war college
-      - fellowship
-      - self-development
-      - 360 feedback
-      - command selection
-      - data literacy
+      - SAFTI MI
+      - Goh Keng Swee
+      - Command and Staff College
+      - Army CSC
+      - OCS
+      - Officer Cadet School
+      - professional military education
+      - PME
       - Captain's Career Course
       - CCC
-      - emerging-tech assessment
-      - drone operator training
       - career-course reform
+      - data literacy
 
   - id: 6
-    name: Training Analytics & Infrastructure
-    primary_categories: [analytics, infrastructure]
+    name: Doctrine Development
+    primary_categories: [doctrine]
     focus_areas:
-      - Training analytics and measurement of effectiveness
-      - xAPI, SCORM, learning record stores
-      - Training management and LMS infrastructure
-      - Range and facility infrastructure
-      - Readiness measurement and reporting
-      - Data-driven training feedback loops
+      - Army-level doctrine writing and rapid update cycles
+      - Doctrine workflow digitisation (authoring, review, version control)
+      - Doctrine archiving and inter-divisional version tracking
+      - Standard operating procedures (SOPs) and operating manuals
+      - Evolution of procedures since SAF formation; AI-assisted procedure optimisation
+      - Concept development and capstone concepts
     core_question: >
-      What data and infrastructure do we need to measure training
-      effectiveness honestly and continuously improve the training enterprise?
+      How can SAF accelerate doctrine writing, archiving, version control,
+      and SOP optimisation by digitising the doctrine workflow and applying
+      AI - without sacrificing rigour or coherence?
     keywords:
-      - training analytics
-      - learning analytics
-      - xAPI
-      - experience API
-      - SCORM
-      - learning record store
-      - LRS
-      - training management
-      - TMS
-      - learning management system
-      - LMS
-      - training data
-      - performance measurement
-      - training effectiveness
-      - after-action review
-      - AAR
-      - training infrastructure
-      - training range
-      - range modernisation
-      - readiness measurement
-      - objective training
-      - evidence-based training
-      - instructional data
-      - learning data
-      - data-driven training
-      - training feedback
-      - assessment design
-      - next-gen C2
-      - NGC2
-      - C2 data fabric
-      - generative AI
-      - AI agents
-      - fog computing
+      - doctrine
+      - doctrine writing
+      - doctrine update
+      - doctrine workflow
+      - doctrine manual
+      - doctrine archive
+      - doctrine versioning
+      - doctrine 2.0
+      - rapid doctrine
+      - capstone concept
+      - concept paper
+      - warfighting concept
+      - operating manual
+      - standard operating procedure
+      - SOP
+      - procedure optimisation
+      - AI for doctrine
+      - doctrine automation
+      - field manual
+      - FM 7-0
+      - ADP 7-0
+      - multi-domain operations
+      - MDO
+      - large-scale combat operations
+      - LSCO
+      - continuous transformation
+      - JCIDS
+      - agentic warfare
